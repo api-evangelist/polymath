@@ -1,0 +1,227 @@
+openapi: 3.0.2
+info:
+  title: Polymath API Service CANBus Vehicle Operations API
+  description: Polymath API service to interact with a real or simulated polymath-powered robot
+  termsOfService: https://www.polymathrobotics.com/legal/terms-of-service
+  contact:
+    name: Polymath Support
+    url: https://www.polymathrobotics.com
+    email: api@polymathrobotics.com
+  license:
+    name: All rights reserved
+    url: https://www.polymathrobotics.com/legal/privacy-policy
+  version: 2.0.0
+tags:
+- name: Vehicle Operations
+  description: All endpoints related to interacting with Robot's vehicle operations here
+paths:
+  /v2/vehicle-commands:
+    get:
+      tags:
+      - Vehicle Operations
+      summary: Get the available Vehicle Commands and associated Parameters
+      description: Returns available vehicle command options and configurable parameters.
+      operationId: vehicle_commands
+      responses:
+        '200':
+          description: Available vehicle command options and parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VehicleCommandOptionResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/vehicle-command:
+    post:
+      tags:
+      - Vehicle Operations
+      summary: Send a vehicle command to the robot
+      description: Sends a vehicle command to the robot.
+      operationId: vehicle_command
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VehicleCommandAction'
+        required: true
+      responses:
+        '200':
+          description: Sent vehicle command and upstream service response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VehicleCommandResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    CommandMode:
+      title: CommandMode
+      enum:
+      - 0
+      - 1
+      description: An enumeration.
+    VehicleCommandOptionResponse:
+      title: VehicleCommandOptionResponse
+      required:
+      - status
+      - message
+      - data
+      type: object
+      properties:
+        status:
+          title: Status
+          type: string
+        message:
+          title: Message
+          type: string
+        data:
+          title: Data
+          type: array
+          items:
+            $ref: '#/components/schemas/CortexOption'
+    KeyValuePair:
+      title: KeyValuePair
+      required:
+      - key
+      - value
+      type: object
+      properties:
+        key:
+          title: Key
+          type: string
+        value:
+          title: Value
+          type: string
+    ValidationError:
+      title: ValidationError
+      required:
+      - loc
+      - msg
+      - type
+      type: object
+      properties:
+        loc:
+          title: Location
+          type: array
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+        msg:
+          title: Message
+          type: string
+        type:
+          title: Error Type
+          type: string
+    HTTPValidationError:
+      title: HTTPValidationError
+      type: object
+      properties:
+        detail:
+          title: Detail
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+    VehicleCommandResponse:
+      title: VehicleCommandResponse
+      required:
+      - status
+      - message
+      - data
+      type: object
+      properties:
+        status:
+          title: Status
+          type: string
+        message:
+          title: Message
+          type: string
+        data:
+          $ref: '#/components/schemas/VehicleCommandData'
+    VehicleCommandData:
+      title: VehicleCommandData
+      required:
+      - sent
+      - received
+      type: object
+      properties:
+        sent:
+          $ref: '#/components/schemas/VehicleCommandAction'
+        received:
+          title: Received
+          type: object
+    ErrorResponse:
+      title: ErrorResponse
+      required:
+      - status
+      - message
+      type: object
+      properties:
+        status:
+          title: Status
+          enum:
+          - error
+          type: string
+        message:
+          title: Message
+          type: string
+        error:
+          $ref: '#/components/schemas/ErrorDetails'
+    VehicleCommandAction:
+      title: VehicleCommandAction
+      type: object
+      properties:
+        vehicle_command:
+          title: Vehicle Command
+          allOf:
+          - $ref: '#/components/schemas/CortexOption'
+          description: Vehicle command to execute
+        mode:
+          allOf:
+          - $ref: '#/components/schemas/CommandMode'
+          description: 'Mode of execution of previous and current waypoints. Available options: ''ADD'',''PREEMPT''. ADD or 0: Add a new waypoint to existing queue of waypoints, PREEMPT or 1: Delete the existing queue and adds the new waypoint.'
+          default: 0
+          example: ADD
+    ErrorDetails:
+      title: ErrorDetails
+      required:
+      - details
+      type: object
+      properties:
+        details:
+          title: Details
+          type: string
+    CortexOption:
+      title: CortexOption
+      required:
+      - name
+      - params
+      type: object
+      properties:
+        name:
+          title: Name
+          type: string
+        params:
+          title: Params
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValuePair'
+  securitySchemes:
+    HTTPBearer:
+      type: http
+      scheme: bearer

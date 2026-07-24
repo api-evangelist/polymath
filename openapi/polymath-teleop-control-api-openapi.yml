@@ -1,0 +1,278 @@
+openapi: 3.0.2
+info:
+  title: Polymath API Service CANBus Teleop Control API
+  description: Polymath API service to interact with a real or simulated polymath-powered robot
+  termsOfService: https://www.polymathrobotics.com/legal/terms-of-service
+  contact:
+    name: Polymath Support
+    url: https://www.polymathrobotics.com
+    email: api@polymathrobotics.com
+  license:
+    name: All rights reserved
+    url: https://www.polymathrobotics.com/legal/privacy-policy
+  version: 2.0.0
+tags:
+- name: Teleop Control
+  description: Endpoints for managing control leases
+paths:
+  /v2/teleop-control/acquire:
+    post:
+      tags:
+      - Teleop Control
+      summary: Acquire control lease granting exclusive access to teleop
+      description: Acquire control lease if none exists or has expired.
+      operationId: acquire_lease
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ControlResponse'
+        '403':
+          description: Lease is unavailable or not held by the requesting user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+      - HTTPBearer: []
+  /v2/teleop-control/renew:
+    post:
+      tags:
+      - Teleop Control
+      summary: Renew existing control lease
+      description: Renew an existing lease. Only the current lease holder can renew.
+      operationId: renew_lease
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ControlResponse'
+        '403':
+          description: Lease is unavailable or not held by the requesting user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+      - HTTPBearer: []
+  /v2/teleop-control/release:
+    post:
+      tags:
+      - Teleop Control
+      summary: Release the current control lease
+      description: Explicitly release the current lease.
+      operationId: release_lease
+      parameters:
+      - description: If true, release the lease regardless of who holds it. Requires valid bearer token; no additional admin validation exists.
+        required: false
+        schema:
+          title: Force
+          type: boolean
+          description: If true, release the lease regardless of who holds it. Requires valid bearer token; no additional admin validation exists.
+          default: false
+        name: force
+        in: query
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ControlResponse'
+        '403':
+          description: Lease is unavailable or not held by the requesting user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - HTTPBearer: []
+  /v2/teleop-control/transfer:
+    post:
+      tags:
+      - Teleop Control
+      summary: Transfer control lease to another user
+      description: Transfer the lease to another user. Only the current lease holder can transfer.
+      operationId: transfer_lease
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransferLeaseRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ControlResponse'
+        '403':
+          description: Lease is unavailable or not held by the requesting user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - HTTPBearer: []
+  /v2/teleop-control/status:
+    get:
+      tags:
+      - Teleop Control
+      summary: Get current control lease status
+      description: Get current lease status and lease holder identity.
+      operationId: get_lease_status
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ControlResponse'
+components:
+  schemas:
+    ValidationError:
+      title: ValidationError
+      required:
+      - loc
+      - msg
+      - type
+      type: object
+      properties:
+        loc:
+          title: Location
+          type: array
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+        msg:
+          title: Message
+          type: string
+        type:
+          title: Error Type
+          type: string
+    HTTPValidationError:
+      title: HTTPValidationError
+      type: object
+      properties:
+        detail:
+          title: Detail
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+    ErrorResponse:
+      title: ErrorResponse
+      required:
+      - status
+      - message
+      type: object
+      properties:
+        status:
+          title: Status
+          enum:
+          - error
+          type: string
+        message:
+          title: Message
+          type: string
+        error:
+          $ref: '#/components/schemas/ErrorDetails'
+    ErrorDetails:
+      title: ErrorDetails
+      required:
+      - details
+      type: object
+      properties:
+        details:
+          title: Details
+          type: string
+    ControlResponse:
+      title: ControlResponse
+      required:
+      - message
+      - data
+      type: object
+      properties:
+        status:
+          title: Status
+          enum:
+          - success
+          type: string
+          description: JSend status
+          default: success
+        message:
+          title: Message
+          type: string
+          description: Human readable message
+        data:
+          title: Data
+          allOf:
+          - $ref: '#/components/schemas/ControlLease'
+          description: Current lease data
+      description: Model for successful responses in the control API
+    TransferLeaseRequest:
+      title: TransferLeaseRequest
+      required:
+      - to
+      type: object
+      properties:
+        to:
+          title: To
+          type: string
+          description: User ID to transfer lease to
+    ControlLease:
+      title: ControlLease
+      type: object
+      properties:
+        holder_id:
+          title: Holder Id
+          type: string
+        expires_at:
+          title: Expires At
+          type: string
+          format: date-time
+  securitySchemes:
+    HTTPBearer:
+      type: http
+      scheme: bearer

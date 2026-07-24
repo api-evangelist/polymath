@@ -1,0 +1,174 @@
+openapi: 3.0.2
+info:
+  title: Polymath API Service CANBus filesystem API
+  description: Polymath API service to interact with a real or simulated polymath-powered robot
+  termsOfService: https://www.polymathrobotics.com/legal/terms-of-service
+  contact:
+    name: Polymath Support
+    url: https://www.polymathrobotics.com
+    email: api@polymathrobotics.com
+  license:
+    name: All rights reserved
+    url: https://www.polymathrobotics.com/legal/privacy-policy
+  version: 2.0.0
+tags:
+- name: filesystem
+paths:
+  /v2/fs/health:
+    get:
+      tags:
+      - filesystem
+      summary: Health check for dufs service
+      description: Checks whether the dufs service is reachable. Always returns HTTP 200 and reports health in the response body.
+      operationId: health_check
+      responses:
+        '200':
+          description: Service health status (healthy or degraded)
+          content:
+            application/json:
+              schema: {}
+  /v2/fs/recursive-list:
+    get:
+      tags:
+      - filesystem
+      summary: List files and directories recursively
+      description: Returns a recursive file and directory tree from the robot data directory.
+      operationId: list_files_and_directories
+      parameters:
+      - required: false
+        schema:
+          title: Depth
+          type: integer
+          default: 5
+        name: depth
+        in: query
+      - required: false
+        schema:
+          title: Path
+          type: string
+          default: /
+        name: path
+        in: query
+      responses:
+        '200':
+          description: List of files and directories
+          content:
+            application/json:
+              schema: {}
+        '503':
+          description: Service unavailable
+        '504':
+          description: Request timed out
+        '500':
+          description: Internal server error
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v2/fs/{path}:
+    get:
+      tags:
+      - filesystem
+      summary: Get file or directory
+      description: Returns file content or a directory listing from the robot data directory. Use `?zip` to download a zip archive. Use `?json` for directory listings in JSON format.
+      operationId: get_file_or_directory
+      parameters:
+      - required: true
+        schema:
+          title: Path
+          type: string
+        name: path
+        in: path
+      responses:
+        '200':
+          description: File content or directory listing
+          content:
+            application/json:
+              schema: {}
+        '404':
+          description: File or directory not found
+        '503':
+          description: Service unavailable
+        '504':
+          description: Request timed out
+        '500':
+          description: Internal server error
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    delete:
+      tags:
+      - filesystem
+      summary: Delete file or directory
+      description: Deletes a file or directory from the robot data directory.
+      operationId: delete_file_or_directory
+      parameters:
+      - required: true
+        schema:
+          title: Path
+          type: string
+        name: path
+        in: path
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '204':
+          description: File or directory deleted successfully
+        '404':
+          description: File or directory not found
+        '503':
+          description: Service unavailable
+        '504':
+          description: Request timed out
+        '500':
+          description: Internal server error
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    HTTPValidationError:
+      title: HTTPValidationError
+      type: object
+      properties:
+        detail:
+          title: Detail
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+    ValidationError:
+      title: ValidationError
+      required:
+      - loc
+      - msg
+      - type
+      type: object
+      properties:
+        loc:
+          title: Location
+          type: array
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+        msg:
+          title: Message
+          type: string
+        type:
+          title: Error Type
+          type: string
+  securitySchemes:
+    HTTPBearer:
+      type: http
+      scheme: bearer

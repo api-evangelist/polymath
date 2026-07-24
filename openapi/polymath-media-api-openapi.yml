@@ -1,0 +1,61 @@
+openapi: 3.0.2
+info:
+  title: Polymath API Service CANBus Media API
+  description: Polymath API service to interact with a real or simulated polymath-powered robot
+  termsOfService: https://www.polymathrobotics.com/legal/terms-of-service
+  contact:
+    name: Polymath Support
+    url: https://www.polymathrobotics.com
+    email: api@polymathrobotics.com
+  license:
+    name: All rights reserved
+    url: https://www.polymathrobotics.com/legal/privacy-policy
+  version: 2.0.0
+tags:
+- name: Media
+  description: All endpoints related to interacting with Robot's media resources
+paths:
+  /v2/media/streams:
+    get:
+      tags:
+      - Media
+      summary: List Media Devices
+      operationId: list_media_devices
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                title: Response List Media Devices V2 Media Streams Get
+                type: array
+                items:
+                  anyOf:
+                  - $ref: '#/components/schemas/BaseStream'
+                  - $ref: '#/components/schemas/BaseStream'
+components:
+  schemas:
+    MediaTypeEnum:
+      title: MediaTypeEnum
+      enum:
+      - media_device
+      - rtsp
+      - ros
+      - gstream
+      type: string
+      description: An enumeration.
+    BaseStream:
+      title: BaseStream
+      required:
+      - media_type
+      type: object
+      properties:
+        media_type:
+          $ref: '#/components/schemas/MediaTypeEnum'
+        data:
+          title: Data
+      description: "Abstract base class for generic types.\n\nOn Python 3.12 and newer, generic classes implicitly inherit from\nGeneric when they declare a parameter list after the class's name::\n\n    class Mapping[KT, VT]:\n        def __getitem__(self, key: KT) -> VT:\n            ...\n        # Etc.\n\nOn older versions of Python, however, generic classes have to\nexplicitly inherit from Generic.\n\nAfter a class has been declared to be generic, it can then be used as\nfollows::\n\n    def lookup_name[KT, VT](mapping: Mapping[KT, VT], key: KT, default: VT) -> VT:\n        try:\n            return mapping[key]\n        except KeyError:\n            return default"
+  securitySchemes:
+    HTTPBearer:
+      type: http
+      scheme: bearer

@@ -1,0 +1,1035 @@
+openapi: 3.0.2
+info:
+  title: Polymath API Service CANBus Vehicle Autonomy API
+  description: Polymath API service to interact with a real or simulated polymath-powered robot
+  termsOfService: https://www.polymathrobotics.com/legal/terms-of-service
+  contact:
+    name: Polymath Support
+    url: https://www.polymathrobotics.com
+    email: api@polymathrobotics.com
+  license:
+    name: All rights reserved
+    url: https://www.polymathrobotics.com/legal/privacy-policy
+  version: 2.0.0
+tags:
+- name: Vehicle Autonomy
+  description: All endpoints related to interacting with Robot's autonomy operations here
+paths:
+  /v2/polymath-feedback:
+    get:
+      tags:
+      - Vehicle Autonomy
+      summary: Get the combined Autonomy, Navigation and Vehicle feedback from the Polymath system
+      description: Returns combined autonomy, navigation, and vehicle feedback from the Polymath system.
+      operationId: polymath_feedback
+      responses:
+        '200':
+          description: Combined autonomy, navigation, and vehicle feedback.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PolymathFeedbackResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/costmap/boundary:
+    get:
+      tags:
+      - Vehicle Autonomy
+      summary: Get global costmap boundary coordinates
+      description: Returns the latest latitude/longitude coordinates for the four corners of the global costmap boundary.
+      operationId: costmap_boundary
+      responses:
+        '200':
+          description: Costmap boundary corner coordinates.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CostmapBoundaryResponse'
+        '404':
+          description: Costmap boundary data unavailable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/navigation-path-options:
+    get:
+      tags:
+      - Vehicle Autonomy
+      summary: Get the available Navigation Path Options and associated Parameters
+      description: Returns available navigation path options and configurable parameters.
+      operationId: navigation_path_options
+      responses:
+        '200':
+          description: Available navigation path options and parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PathLogicOptionResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/motion-commands:
+    get:
+      tags:
+      - Vehicle Autonomy
+      summary: Get the available motion commands
+      description: Returns available motion commands that can be sent to the Polymath system.
+      operationId: get_nav_cmds
+      responses:
+        '200':
+          description: Available motion command names and numeric alternatives.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MotionCommandListResponse'
+  /v2/reference-targets:
+    get:
+      tags:
+      - Vehicle Autonomy
+      summary: Get all previously set reference targets
+      description: Returns all previously set reference targets.
+      operationId: reference_targets
+      responses:
+        '200':
+          description: All previously set reference targets.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReferenceTargetsResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    post:
+      tags:
+      - Vehicle Autonomy
+      summary: Set the location and details of a reference location or an object
+      description: Sets one or more reference targets for relative navigation. Each target may include optional `time_validity` and `recorded_speed_m_s` metadata. Use `POST /relative-waypoints` to send waypoints relative to these targets.
+      operationId: set_reference_targets
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReferenceTargetsModel'
+        required: true
+      responses:
+        '200':
+          description: Sent reference targets and upstream service response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReferenceTargetSetResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v2/reference-targets/current-location:
+    post:
+      tags:
+      - Vehicle Autonomy
+      summary: Set a reference target at the current robot location
+      description: Creates a `previous_location` reference target from the robot's current GPS pose for subsequent relative navigation.
+      operationId: set_reference_target_current_location
+      responses:
+        '200':
+          description: Generated current-location reference target and upstream service response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReferenceTargetSetResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /v2/gps-waypoints:
+    post:
+      tags:
+      - Vehicle Autonomy
+      summary: Send a set of gps waypoints to the robot
+      description: Sends GPS waypoints and navigation options to the robot.
+      operationId: gps_waypoints
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GPSWaypoints'
+        required: true
+      responses:
+        '200':
+          description: Sent GPS waypoints and upstream service response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GPSWaypointTransmissionResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v2/relative-waypoints:
+    post:
+      tags:
+      - Vehicle Autonomy
+      summary: Send a set of relative waypoints to the robot
+      description: Sends relative waypoints and navigation options to the robot.
+      operationId: relative_waypoints
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RelativeWaypoints'
+        required: true
+      responses:
+        '200':
+          description: Sent relative waypoints and upstream service response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RelativeWaypointTransmissionResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v2/motion-command:
+    post:
+      tags:
+      - Vehicle Autonomy
+      summary: Send a motion command to the robot to change its current state
+      description: 'Sends a motion command to change the robot motion state. Supported commands: `STOP` (0), `PAUSE` (1), and `RESUME` (2).'
+      operationId: nav_cmd
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MotionCommandAction'
+        required: true
+      responses:
+        '201':
+          description: Motion command execution response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MotionCommandExecutionResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    MotionCommandExecutionData:
+      title: MotionCommandExecutionData
+      type: object
+      properties:
+        received:
+          title: Received
+    KeyValuePair:
+      title: KeyValuePair
+      required:
+      - key
+      - value
+      type: object
+      properties:
+        key:
+          title: Key
+          type: string
+        value:
+          title: Value
+          type: string
+    Orientation:
+      title: Orientation
+      required:
+      - x
+      - y
+      - z
+      - w
+      type: object
+      properties:
+        x:
+          title: X
+          type: number
+        y:
+          title: Y
+          type: number
+        z:
+          title: Z
+          type: number
+        w:
+          title: W
+          type: number
+    Pose:
+      title: Pose
+      required:
+      - position
+      - orientation
+      type: object
+      properties:
+        position:
+          $ref: '#/components/schemas/Position'
+        orientation:
+          $ref: '#/components/schemas/Orientation'
+    RelativeWaypoints:
+      title: RelativeWaypoints
+      required:
+      - move_to
+      type: object
+      properties:
+        relative_to:
+          title: Relative To
+          anyOf:
+          - type: string
+          - $ref: '#/components/schemas/ReferenceTarget'
+          description: The target that waypoints are specified relative to. Accepts either a name as string or a fully specified ReferenceTarget. The name can be 'current_position', a previously set ReferenceTarget, or the name of a frame in the transform tree, such as 'base_link'. Unknown strings are passed through verbatim and will fail downstream if the reference does not exist. Defaults to 'current_position' so waypoints are interpreted relative to the robot's current pose.
+          default: current_position
+        timestamp_utc:
+          title: Timestamp Utc
+          type: string
+          description: 'Timestamp in UTC ISO format. Should be provided in ISO 8601 format: ''YYYY-MM-DDTHH:MM:SSZ''. If not provided, it will default to the current UTC time.'
+          default: ''
+        move_to:
+          title: Move To
+          type: array
+          items:
+            $ref: '#/components/schemas/RelativeCommand'
+          description: 'Ordered list of relative waypoints. When multiple waypoints are provided, the robot navigates through them continuously as a single path rather than stopping discretely at each one. Robot body frame: x forward, y left, z up; positive yaw is counter-clockwise.'
+        navigation_options:
+          title: Navigation Options
+          allOf:
+          - $ref: '#/components/schemas/CortexNavigationOptions'
+          description: Optional navigation options for this command, including the path logic option and execution mode. See the GET /navigation-path-options endpoint for the available path options and their parameters.
+    ReferenceTargetSetData:
+      title: ReferenceTargetSetData
+      required:
+      - sent
+      type: object
+      properties:
+        sent:
+          $ref: '#/components/schemas/ReferenceTargetsModel'
+        received:
+          title: Received
+    GeofenceBoundary:
+      title: GeofenceBoundary
+      required:
+      - bottom_left
+      - bottom_right
+      - top_left
+      - top_right
+      type: object
+      properties:
+        bottom_left:
+          $ref: '#/components/schemas/NavSatFixModel'
+        bottom_right:
+          $ref: '#/components/schemas/NavSatFixModel'
+        top_left:
+          $ref: '#/components/schemas/NavSatFixModel'
+        top_right:
+          $ref: '#/components/schemas/NavSatFixModel'
+    RelativeCommand:
+      title: RelativeCommand
+      type: object
+      properties:
+        timestamp_utc:
+          title: Timestamp Utc
+          type: string
+          description: 'Timestamp in UTC ISO format. Should be provided in ISO 8601 format: ''YYYY-MM-DDTHH:MM:SSZ''. If not provided, it will default to the current UTC time.'
+          default: ''
+        x:
+          title: X
+          type: number
+          description: Offset distance in meters along the X axis.
+          default: 0.0
+        y:
+          title: Y
+          type: number
+          description: Offset distance in meters along the Y axis.
+          default: 0.0
+        z:
+          title: Z
+          type: number
+          description: Offset distance in meters along the Z axis.
+          default: 0.0
+        yaw:
+          title: Yaw
+          type: number
+          description: Yaw (radians) angular offset indicating the direction the robot should face relative to the target.
+          default: 0.0
+    MotionCommandSummary:
+      title: MotionCommandSummary
+      required:
+      - motion_command
+      - alternative
+      type: object
+      properties:
+        motion_command:
+          title: Motion Command
+          type: string
+        alternative:
+          title: Alternative
+          type: integer
+    GPSWaypoints:
+      title: GPSWaypoints
+      required:
+      - goals
+      type: object
+      properties:
+        timestamp_utc:
+          title: Timestamp Utc
+          type: string
+          description: 'Timestamp in UTC ISO format. Should be provided in ISO 8601 format: ''YYYY-MM-DDTHH:MM:SSZ''. If not provided, it will default to the current UTC time.'
+          default: ''
+        goals:
+          title: Goals
+          type: array
+          items:
+            $ref: '#/components/schemas/GoalPoses'
+          description: Ordered list of GPS waypoints. When multiple waypoints are provided, the robot navigates through them continuously as a single path rather than stopping discretely at each one.
+        navigation_options:
+          title: Navigation Options
+          allOf:
+          - $ref: '#/components/schemas/CortexNavigationOptions'
+          description: Optional navigation options for this command, including the path logic option and execution mode. See the GET /navigation-path-options endpoint for the available path options and their parameters.
+    PolymathFeedbackData:
+      title: PolymathFeedbackData
+      required:
+      - polymath_feedback
+      type: object
+      properties:
+        polymath_feedback:
+          $ref: '#/components/schemas/PolymathFeedback'
+    ReferenceTargetSetResponse:
+      title: ReferenceTargetSetResponse
+      required:
+      - status
+      - message
+      - data
+      type: object
+      properties:
+        status:
+          title: Status
+          type: string
+        message:
+          title: Message
+          type: string
+        data:
+          $ref: '#/components/schemas/ReferenceTargetSetData'
+    GoalPoses:
+      title: GoalPoses
+      required:
+      - lat
+      - lon
+      type: object
+      properties:
+        timestamp_utc:
+          title: Timestamp Utc
+          type: string
+          description: 'Timestamp in UTC ISO format. Should be provided in ISO 8601 format: ''YYYY-MM-DDTHH:MM:SSZ''. If not provided, it will default to the current UTC time.'
+          default: ''
+        lat:
+          title: Lat
+          type: number
+          description: Latitude
+        lon:
+          title: Lon
+          type: number
+          description: Longitude
+        yaw:
+          title: Yaw
+          type: number
+          description: Yaw (radians). 0.0 indicates east. positive yaw is counter-clockwise.
+    CortexNavigationOptions:
+      title: CortexNavigationOptions
+      type: object
+      properties:
+        path_option:
+          title: Path Option
+          allOf:
+          - $ref: '#/components/schemas/CortexOption'
+          description: Navigation path logic option to set. See the GET /navigation-path-options endpoint for the available path options and their parameters.
+          example:
+            name: target_follower
+            params:
+            - key: speed
+              value: '0.5'
+        mode:
+          allOf:
+          - $ref: '#/components/schemas/CommandMode'
+          description: 'Mode of execution of previous and current waypoints. Available options: ''ADD'',''PREEMPT''. ADD or 0: Add a new waypoint to existing queue of waypoints, PREEMPT or 1: Delete the existing queue and adds the new waypoint.'
+          default: 0
+          example: ADD
+    GPSWaypointTransmissionData:
+      title: GPSWaypointTransmissionData
+      required:
+      - sent
+      type: object
+      properties:
+        sent:
+          $ref: '#/components/schemas/GPSWaypoints'
+        received:
+          title: Received
+    UUID:
+      title: UUID
+      required:
+      - uuid
+      type: object
+      properties:
+        uuid:
+          title: Uuid
+          type: array
+          items:
+            type: integer
+    MotionCommandListResponse:
+      title: MotionCommandListResponse
+      required:
+      - status
+      - message
+      - data
+      type: object
+      properties:
+        status:
+          title: Status
+          type: string
+        message:
+          title: Message
+          type: string
+        data:
+          title: Data
+          type: array
+          items:
+            $ref: '#/components/schemas/MotionCommandSummary'
+    PoseWithHeader:
+      title: PoseWithHeader
+      required:
+      - header
+      - pose
+      type: object
+      properties:
+        header:
+          $ref: '#/components/schemas/Header'
+        pose:
+          $ref: '#/components/schemas/Pose'
+    RelativeWaypointTransmissionResponse:
+      title: RelativeWaypointTransmissionResponse
+      required:
+      - status
+      - message
+      - data
+      type: object
+      properties:
+        status:
+          title: Status
+          type: string
+        message:
+          title: Message
+          type: string
+        data:
+          $ref: '#/components/schemas/RelativeWaypointTransmissionData'
+    Header:
+      title: Header
+      required:
+      - stamp
+      - frame_id
+      type: object
+      properties:
+        stamp:
+          $ref: '#/components/schemas/Stamp'
+        frame_id:
+          title: Frame Id
+          type: string
+    CortexStatusEnum:
+      title: CortexStatusEnum
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      description: An enumeration.
+    MotionCommandExecutionResponse:
+      title: MotionCommandExecutionResponse
+      required:
+      - status
+      - message
+      - data
+      type: object
+      properties:
+        status:
+          title: Status
+          type: string
+        message:
+          title: Message
+          type: string
+        data:
+          $ref: '#/components/schemas/MotionCommandExecutionData'
+    ErrorResponse:
+      title: ErrorResponse
+      required:
+      - status
+      - message
+      type: object
+      properties:
+        status:
+          title: Status
+          enum:
+          - error
+          type: string
+        message:
+          title: Message
+          type: string
+        error:
+          $ref: '#/components/schemas/ErrorDetails'
+    ErrorDetails:
+      title: ErrorDetails
+      required:
+      - details
+      type: object
+      properties:
+        details:
+          title: Details
+          type: string
+    GoalInfo:
+      title: GoalInfo
+      required:
+      - stamp
+      type: object
+      properties:
+        goal_id:
+          $ref: '#/components/schemas/UUID'
+        stamp:
+          $ref: '#/components/schemas/Stamp'
+    ReferenceTargetsResponse:
+      title: ReferenceTargetsResponse
+      required:
+      - status
+      - message
+      - data
+      type: object
+      properties:
+        status:
+          title: Status
+          type: string
+        message:
+          title: Message
+          type: string
+        data:
+          $ref: '#/components/schemas/ReferenceTargetsModel'
+    TimeStamp:
+      title: TimeStamp
+      type: object
+      properties:
+        sec:
+          title: Sec
+          type: integer
+        nanosec:
+          title: Nanosec
+          type: integer
+    Stamp:
+      title: Stamp
+      type: object
+      properties:
+        sec:
+          title: Sec
+          type: integer
+        nanosec:
+          title: Nanosec
+          type: integer
+    Ros2ActionServerGoalStatus:
+      title: Ros2ActionServerGoalStatus
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      description: An enumeration.
+    RelativeWaypointTransmissionData:
+      title: RelativeWaypointTransmissionData
+      required:
+      - sent
+      type: object
+      properties:
+        sent:
+          $ref: '#/components/schemas/RelativeWaypoints'
+        received:
+          title: Received
+    CostmapBoundaryResponse:
+      title: CostmapBoundaryResponse
+      required:
+      - status
+      - message
+      - data
+      type: object
+      properties:
+        status:
+          title: Status
+          type: string
+        message:
+          title: Message
+          type: string
+        data:
+          $ref: '#/components/schemas/GeofenceBoundary'
+    PolymathFeedbackResponse:
+      title: PolymathFeedbackResponse
+      type: object
+      properties:
+        status:
+          title: Status
+          type: string
+        message:
+          title: Message
+          type: string
+        data:
+          $ref: '#/components/schemas/PolymathFeedbackData'
+    CortexOption:
+      title: CortexOption
+      required:
+      - name
+      - params
+      type: object
+      properties:
+        name:
+          title: Name
+          type: string
+        params:
+          title: Params
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValuePair'
+    VehicleFeedback:
+      title: VehicleFeedback
+      type: object
+      properties:
+        state:
+          title: State
+          type: string
+        description:
+          title: Description
+          type: string
+        data:
+          title: Data
+          type: array
+          items: {}
+    NavigationFeedback:
+      title: NavigationFeedback
+      type: object
+      properties:
+        nav2_goal_status:
+          $ref: '#/components/schemas/NavigationGoalStatus'
+        total_distance_remaining:
+          title: Total Distance Remaining
+          type: number
+          description: Total remaining distance to the goal, in meters.
+        target_pose:
+          $ref: '#/components/schemas/PoseWithHeader'
+        final_pose:
+          $ref: '#/components/schemas/PoseWithHeader'
+        current_pose_index:
+          title: Current Pose Index
+          type: integer
+        number_of_poses_remaining:
+          title: Number Of Poses Remaining
+          type: integer
+        navigation_time:
+          title: Navigation Time
+          allOf:
+          - $ref: '#/components/schemas/Stamp'
+          description: Elapsed navigation time as a duration (seconds and nanoseconds).
+        estimated_time_remaining:
+          title: Estimated Time Remaining
+          allOf:
+          - $ref: '#/components/schemas/Stamp'
+          description: Estimated time remaining as a duration (seconds and nanoseconds).
+    PolymathFeedback:
+      title: PolymathFeedback
+      required:
+      - navigation_feedback
+      - vehicle_feedback
+      - current_pose
+      - current_command_index
+      - number_commands_remaining
+      type: object
+      properties:
+        timestamp_utc:
+          title: Timestamp Utc
+          allOf:
+          - $ref: '#/components/schemas/TimeStamp'
+          default: {}
+        cortex_status:
+          $ref: '#/components/schemas/CortexStatus'
+        navigation_feedback:
+          $ref: '#/components/schemas/NavigationFeedback'
+        vehicle_feedback:
+          $ref: '#/components/schemas/VehicleFeedback'
+        current_pose:
+          $ref: '#/components/schemas/PoseWithHeader'
+        current_command_index:
+          title: Current Command Index
+          type: integer
+        number_commands_remaining:
+          title: Number Commands Remaining
+          type: integer
+    CortexStatus:
+      title: CortexStatus
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/CortexStatusEnum'
+        status_text:
+          title: Status Text
+          type: string
+          default: ''
+        description:
+          title: Description
+          type: string
+    ReferenceTargetsModel:
+      title: ReferenceTargetsModel
+      required:
+      - reference_targets
+      type: object
+      properties:
+        reference_targets:
+          title: Reference Targets
+          type: array
+          items:
+            $ref: '#/components/schemas/ReferenceTarget'
+    CommandMode:
+      title: CommandMode
+      enum:
+      - 0
+      - 1
+      description: An enumeration.
+    NavSatFixModel:
+      title: NavSatFixModel
+      required:
+      - latitude
+      - longitude
+      - altitude
+      type: object
+      properties:
+        latitude:
+          title: Latitude
+          type: number
+        longitude:
+          title: Longitude
+          type: number
+        altitude:
+          title: Altitude
+          type: number
+    MotionCommandAction:
+      title: MotionCommandAction
+      type: object
+      properties:
+        motion_command:
+          allOf:
+          - $ref: '#/components/schemas/MotionCommandOptions'
+          description: Motion command options. STOP (0) will cancel all current and queued navigation or vehicle commands. When in STOP, no new commands will be added to the queue until resumed. PAUSE (1) will pause the current command execution, leaving remaining commands in the queue, and RESUME (2) will resume the paused waypoint execution and place the autonomy state back to IDLE if the queue is empty.
+          default: 0
+        mode:
+          allOf:
+          - $ref: '#/components/schemas/CommandMode'
+          description: 'Mode of execution of previous and current waypoints. Available options: ''ADD'',''PREEMPT''. ADD or 0: Add a new waypoint to existing queue of waypoints, PREEMPT or 1: Delete the existing queue and adds the new waypoint.'
+          default: 1
+          example: PREEMPT
+    ValidationError:
+      title: ValidationError
+      required:
+      - loc
+      - msg
+      - type
+      type: object
+      properties:
+        loc:
+          title: Location
+          type: array
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+        msg:
+          title: Message
+          type: string
+        type:
+          title: Error Type
+          type: string
+    MotionCommandOptions:
+      title: MotionCommandOptions
+      enum:
+      - 0
+      - 1
+      - 2
+      description: An enumeration.
+    NavigationGoalStatus:
+      title: NavigationGoalStatus
+      required:
+      - goal_info
+      - status
+      type: object
+      properties:
+        goal_info:
+          $ref: '#/components/schemas/GoalInfo'
+        status:
+          $ref: '#/components/schemas/Ros2ActionServerGoalStatus'
+        status_text:
+          title: Status Text
+          type: string
+        text:
+          title: Text
+          type: string
+    PathLogicOptionResponse:
+      title: PathLogicOptionResponse
+      type: object
+      properties:
+        status:
+          title: Status
+          type: string
+        message:
+          title: Message
+          type: string
+        data:
+          title: Data
+          type: array
+          items:
+            $ref: '#/components/schemas/CortexOption'
+    HTTPValidationError:
+      title: HTTPValidationError
+      type: object
+      properties:
+        detail:
+          title: Detail
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+    ReferenceTarget:
+      title: ReferenceTarget
+      required:
+      - pose
+      type: object
+      properties:
+        target_id:
+          title: Target Id
+          type: string
+          description: Unique name or ID of the reference target
+          default: string
+        timestamp_utc:
+          title: Timestamp Utc
+          type: string
+          description: 'Timestamp in UTC ISO format. Should be provided in ISO 8601 format: ''YYYY-MM-DDTHH:MM:SSZ''. If not provided, it will default to the current UTC time.'
+        pose:
+          $ref: '#/components/schemas/GeoPoint'
+        time_validity:
+          title: Time Validity
+          type: number
+          description: Time validity in seconds. -1 means forever.
+          default: -1
+        recorded_speed_m_s:
+          title: Recorded Speed M S
+          type: number
+          description: Recorded speed of the object in m/s. `None` indicates no measurement available.
+    GPSWaypointTransmissionResponse:
+      title: GPSWaypointTransmissionResponse
+      required:
+      - status
+      - message
+      - data
+      type: object
+      properties:
+        status:
+          title: Status
+          type: string
+        message:
+          title: Message
+          type: string
+        data:
+          $ref: '#/components/schemas/GPSWaypointTransmissionData'
+    GeoPoint:
+      title: GeoPoint
+      required:
+      - lat
+      - lon
+      type: object
+      properties:
+        lat:
+          title: Lat
+          type: number
+          description: Latitude
+        lon:
+          title: Lon
+          type: number
+          description: Longitude
+        altitude:
+          title: Altitude
+          type: number
+          description: Altitude (meters)
+        yaw:
+          title: Yaw
+          type: number
+          description: 'Yaw (radians). Robot body frame: x forward, y left, z up; positive yaw is counter-clockwise.'
+    Position:
+      title: Position
+      required:
+      - latitude
+      - longitude
+      - altitude
+      type: object
+      properties:
+        latitude:
+          title: Latitude
+          type: number
+        longitude:
+          title: Longitude
+          type: number
+        altitude:
+          title: Altitude
+          type: number
+  securitySchemes:
+    HTTPBearer:
+      type: http
+      scheme: bearer

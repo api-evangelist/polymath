@@ -1,0 +1,145 @@
+openapi: 3.0.2
+info:
+  title: Polymath API Service CANBus Health Check API
+  description: Polymath API service to interact with a real or simulated polymath-powered robot
+  termsOfService: https://www.polymathrobotics.com/legal/terms-of-service
+  contact:
+    name: Polymath Support
+    url: https://www.polymathrobotics.com
+    email: api@polymathrobotics.com
+  license:
+    name: All rights reserved
+    url: https://www.polymathrobotics.com/legal/privacy-policy
+  version: 2.0.0
+tags:
+- name: Health Check
+  description: Contains UUID endpoint that can be used to health check the robot
+paths:
+  /v2/version:
+    get:
+      tags:
+      - Health Check
+      summary: Get the version of the Polymath system
+      description: Returns the current Polymath Synapse and polymath_core commit SHAs.
+      operationId: get_version
+      responses:
+        '200':
+          description: Polymath Synapse and polymath_core commit SHAs.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VersionResponse'
+  /v2/health:
+    get:
+      tags:
+      - Health Check
+      summary: Health check endpoint
+      description: Returns a basic self health status response. This endpoint is used to verify that the Polymath Synapse API is running and responsive.
+      operationId: get_health
+      responses:
+        '200':
+          description: Health status.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthStatusResponse'
+  /v2/uuid:
+    get:
+      tags:
+      - Health Check
+      summary: Get the UUID of the Polymath system
+      description: Returns the device UUID derived from its MAC address. Deprecated; use `/health`.
+      operationId: get_device_uuid
+      responses:
+        '200':
+          description: Device UUID.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UUIDResponse'
+        '404':
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      deprecated: true
+components:
+  schemas:
+    ErrorResponse:
+      title: ErrorResponse
+      required:
+      - status
+      - message
+      type: object
+      properties:
+        status:
+          title: Status
+          enum:
+          - error
+          type: string
+        message:
+          title: Message
+          type: string
+        error:
+          $ref: '#/components/schemas/ErrorDetails'
+    ErrorDetails:
+      title: ErrorDetails
+      required:
+      - details
+      type: object
+      properties:
+        details:
+          title: Details
+          type: string
+    UUIDData:
+      title: UUIDData
+      required:
+      - uuid
+      type: object
+      properties:
+        uuid:
+          title: Uuid
+          type: string
+    UUIDResponse:
+      title: UUIDResponse
+      required:
+      - status
+      - message
+      - data
+      type: object
+      properties:
+        status:
+          title: Status
+          type: string
+        message:
+          title: Message
+          type: string
+        data:
+          $ref: '#/components/schemas/UUIDData'
+    VersionResponse:
+      title: VersionResponse
+      required:
+      - commit_sha
+      - polymath_core_commit_sha
+      type: object
+      properties:
+        commit_sha:
+          title: Commit Sha
+          type: string
+        polymath_core_commit_sha:
+          title: Polymath Core Commit Sha
+          type: string
+    HealthStatusResponse:
+      title: HealthStatusResponse
+      required:
+      - status
+      type: object
+      properties:
+        status:
+          title: Status
+          type: string
+  securitySchemes:
+    HTTPBearer:
+      type: http
+      scheme: bearer

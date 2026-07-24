@@ -1,0 +1,480 @@
+openapi: 3.0.2
+info:
+  title: Polymath API Service CANBus Livekit API
+  description: Polymath API service to interact with a real or simulated polymath-powered robot
+  termsOfService: https://www.polymathrobotics.com/legal/terms-of-service
+  contact:
+    name: Polymath Support
+    url: https://www.polymathrobotics.com
+    email: api@polymathrobotics.com
+  license:
+    name: All rights reserved
+    url: https://www.polymathrobotics.com/legal/privacy-policy
+  version: 2.0.0
+tags:
+- name: Livekit
+paths:
+  /v2/livekit/config:
+    get:
+      tags:
+      - Livekit
+      summary: Get LiveKit discovery configuration
+      description: Returns the configured discovery values and effective LiveKit URL.
+      operationId: get_livekit_config
+      responses:
+        '200':
+          description: Effective LiveKit discovery values.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LivekitConfigResponse'
+  /v2/livekit/token:
+    post:
+      tags:
+      - Livekit
+      summary: Generate a Livekit access token
+      description: Generates a LiveKit access token for the specified identity and room.
+      operationId: generate_livekit_token
+      parameters:
+      - required: true
+        schema:
+          title: Identity
+          type: string
+        name: identity
+        in: query
+      - required: true
+        schema:
+          title: Room Name
+          type: string
+        name: room_name
+        in: query
+      responses:
+        '200':
+          description: Generated LiveKit access token.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LivekitTokenResponse'
+        '400':
+          description: Failed to generate token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPExceptionResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /v2/livekit/room:
+    get:
+      tags:
+      - Livekit
+      summary: Get the current status of the room
+      description: Returns the current LiveKit room status.
+      operationId: get_room
+      responses:
+        '200':
+          description: Current LiveKit room status.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LivekitRoomResponse'
+    post:
+      tags:
+      - Livekit
+      summary: Create a livekit room on this robot
+      description: Connects this robot to the specified LiveKit room.
+      operationId: create_room
+      parameters:
+      - required: true
+        schema:
+          title: Room Name
+          type: string
+        name: room_name
+        in: query
+      responses:
+        '200':
+          description: Room status after connecting to LiveKit.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LivekitRoomResponse'
+        '400':
+          description: Invalid room request (for example, empty or invalid room name)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPExceptionResponse'
+        '500':
+          description: Failed to connect to the room
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPExceptionResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    delete:
+      tags:
+      - Livekit
+      summary: Disconnect from the current room
+      description: Disconnects this robot from the current LiveKit room.
+      operationId: delete_room
+      responses:
+        '200':
+          description: Room status after disconnecting from LiveKit.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LivekitRoomResponse'
+        '500':
+          description: Failed to disconnect the room
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPExceptionResponse'
+  /v2/livekit/room/track:
+    post:
+      tags:
+      - Livekit
+      summary: Create a track on the current room
+      description: Creates and publishes a track in the current LiveKit room.
+      operationId: create_track
+      parameters:
+      - required: true
+        schema:
+          title: Name
+          type: string
+        name: name
+        in: query
+      - required: false
+        schema:
+          title: Fps
+          type: integer
+          default: 30
+        name: fps
+        in: query
+      - required: false
+        schema:
+          allOf:
+          - $ref: '#/components/schemas/CodecEnum'
+          default: H264
+        name: codec
+        in: query
+      - required: false
+        schema:
+          allOf:
+          - $ref: '#/components/schemas/MediaTypeEnum'
+          default: media_device
+        name: media_type
+        in: query
+      - required: false
+        schema:
+          title: Stream Path
+          type: string
+        name: stream_path
+        in: query
+      - required: false
+        schema:
+          title: Use Experimental Reader
+          type: boolean
+          default: false
+        name: use_experimental_reader
+        in: query
+      - required: false
+        schema:
+          title: Width
+          type: integer
+        name: width
+        in: query
+      - required: false
+        schema:
+          title: Height
+          type: integer
+        name: height
+        in: query
+      - required: false
+        schema:
+          title: Max Bitrate Kbps
+          type: integer
+        name: max_bitrate_kbps
+        in: query
+      responses:
+        '200':
+          description: Room status after track creation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LivekitRoomResponse'
+        '400':
+          description: Invalid track request (for example, no room, invalid configuration, or duplicate track name)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPExceptionResponse'
+        '500':
+          description: Failed to publish track
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPExceptionResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    delete:
+      tags:
+      - Livekit
+      summary: Delete a track from the current room
+      description: Deletes a track from the current LiveKit room.
+      operationId: delete_track
+      parameters:
+      - required: true
+        schema:
+          title: Name
+          type: string
+        name: name
+        in: query
+      responses:
+        '200':
+          description: Room status after track deletion.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LivekitRoomResponse'
+        '400':
+          description: Invalid track delete request (for example, no room or track does not exist)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPExceptionResponse'
+        '500':
+          description: Failed to delete track
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPExceptionResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    LivekitRoomDetails:
+      title: LivekitRoomDetails
+      type: object
+      properties:
+        room:
+          $ref: '#/components/schemas/LivekitRoomInfo'
+        hostname:
+          title: Hostname
+          type: string
+        tracks:
+          title: Tracks
+          type: array
+          items:
+            $ref: '#/components/schemas/LivekitTrack'
+          default: []
+      description: Details about the current LiveKit room state.
+    HTTPExceptionResponse:
+      title: HTTPExceptionResponse
+      required:
+      - detail
+      type: object
+      properties:
+        detail:
+          title: Detail
+          type: string
+      description: Response model for HTTPException errors.
+    MediaTypeEnum:
+      title: MediaTypeEnum
+      enum:
+      - media_device
+      - rtsp
+      - ros
+      - gstream
+      type: string
+      description: An enumeration.
+    LivekitTrackStats:
+      title: LivekitTrackStats
+      type: object
+      properties:
+        timestamp:
+          title: Timestamp
+          type: number
+          default: 0.0
+        fps:
+          title: Fps
+          allOf:
+          - $ref: '#/components/schemas/Metric'
+          default:
+            p50: 0.0
+            p95: 0.0
+            p99: 0.0
+        size_bytes:
+          title: Size Bytes
+          type: integer
+          default: 0
+    ValidationError:
+      title: ValidationError
+      required:
+      - loc
+      - msg
+      - type
+      type: object
+      properties:
+        loc:
+          title: Location
+          type: array
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+        msg:
+          title: Message
+          type: string
+        type:
+          title: Error Type
+          type: string
+    HTTPValidationError:
+      title: HTTPValidationError
+      type: object
+      properties:
+        detail:
+          title: Detail
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+    LivekitTrack:
+      title: LivekitTrack
+      required:
+      - name
+      - codec
+      - fps
+      - media_type
+      - stream_path
+      - use_experimental_reader
+      - stats
+      type: object
+      properties:
+        name:
+          title: Name
+          type: string
+        sid:
+          title: Sid
+          type: string
+        codec:
+          $ref: '#/components/schemas/CodecEnum'
+        fps:
+          title: Fps
+          type: number
+        media_type:
+          $ref: '#/components/schemas/MediaTypeEnum'
+        stream_path:
+          title: Stream Path
+          type: string
+        use_experimental_reader:
+          title: Use Experimental Reader
+          type: boolean
+        stats:
+          $ref: '#/components/schemas/LivekitTrackStats'
+        width:
+          title: Width
+          type: integer
+        height:
+          title: Height
+          type: integer
+        max_bitrate_kbps:
+          title: Max Bitrate Kbps
+          type: integer
+      description: Track information for API responses, including configuration and runtime data.
+    LivekitTokenResponse:
+      title: LivekitTokenResponse
+      required:
+      - token
+      type: object
+      properties:
+        token:
+          title: Token
+          type: string
+      description: Response model for LiveKit token generation.
+    LivekitRoomInfo:
+      title: LivekitRoomInfo
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          title: Name
+          type: string
+      description: Information about a connected LiveKit room.
+    CodecEnum:
+      title: CodecEnum
+      enum:
+      - VP8
+      - H264
+      - AV1
+      - VP9
+      type: string
+      description: An enumeration.
+    Metric:
+      title: Metric
+      required:
+      - p50
+      - p95
+      - p99
+      type: object
+      properties:
+        p50:
+          title: P50
+          type: number
+        p95:
+          title: P95
+          type: number
+        p99:
+          title: P99
+          type: number
+    LivekitConfigResponse:
+      title: LivekitConfigResponse
+      type: object
+      properties:
+        room_name:
+          title: Room Name
+          type: string
+        bridge_identity:
+          title: Bridge Identity
+          type: string
+        livekit_url:
+          title: Livekit Url
+          type: string
+      description: Response model for environment-backed LiveKit discovery configuration.
+    LivekitRoomResponse:
+      title: LivekitRoomResponse
+      required:
+      - alive
+      - message
+      - room
+      type: object
+      properties:
+        alive:
+          title: Alive
+          type: boolean
+        message:
+          title: Message
+          type: string
+        room:
+          $ref: '#/components/schemas/LivekitRoomDetails'
+      description: Response model for LiveKit room operations.
+  securitySchemes:
+    HTTPBearer:
+      type: http
+      scheme: bearer

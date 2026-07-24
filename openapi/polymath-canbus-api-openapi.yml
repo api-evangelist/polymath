@@ -1,0 +1,93 @@
+openapi: 3.0.2
+info:
+  title: Polymath API Service CANBus API
+  description: Polymath API service to interact with a real or simulated polymath-powered robot
+  termsOfService: https://www.polymathrobotics.com/legal/terms-of-service
+  contact:
+    name: Polymath Support
+    url: https://www.polymathrobotics.com
+    email: api@polymathrobotics.com
+  license:
+    name: All rights reserved
+    url: https://www.polymathrobotics.com/legal/privacy-policy
+  version: 2.0.0
+tags:
+- name: CANBus
+paths:
+  /v2/canbus/interfaces:
+    get:
+      tags:
+      - CANBus
+      summary: Get the list of available CAN interfaces on the system
+      description: Returns available CAN interfaces on the system.
+      operationId: get_can_interfaces
+      responses:
+        '200':
+          description: Available CAN interfaces.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CanInterfaceListResponse'
+        '404':
+          description: Failed to retrieve CAN interfaces
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: An unexpected error occurred
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    ErrorDetails:
+      title: ErrorDetails
+      required:
+      - details
+      type: object
+      properties:
+        details:
+          title: Details
+          type: string
+    ErrorResponse:
+      title: ErrorResponse
+      required:
+      - status
+      - message
+      type: object
+      properties:
+        status:
+          title: Status
+          enum:
+          - error
+          type: string
+        message:
+          title: Message
+          type: string
+        error:
+          $ref: '#/components/schemas/ErrorDetails'
+    CanInterfaceListResponse:
+      title: CanInterfaceListResponse
+      required:
+      - status
+      - message
+      - data
+      type: object
+      properties:
+        status:
+          title: Status
+          type: string
+        message:
+          title: Message
+          type: string
+        data:
+          title: Data
+          type: array
+          items:
+            type: object
+  securitySchemes:
+    HTTPBearer:
+      type: http
+      scheme: bearer
