@@ -1,0 +1,32 @@
+{
+  "provider": "polymath",
+  "sources": [
+    "polymath-canbus-api-openapi.yml",
+    "polymath-filesystem-api-openapi.yml",
+    "polymath-health-check-api-openapi.yml",
+    "polymath-livekit-api-openapi.yml",
+    "polymath-media-api-openapi.yml",
+    "polymath-ros-api-openapi.yml",
+    "polymath-systemd-api-openapi.yml",
+    "polymath-teleop-control-api-openapi.yml",
+    "polymath-vehicle-autonomy-api-openapi.yml",
+    "polymath-vehicle-operations-api-openapi.yml"
+  ],
+  "outputs": [
+    "polymath-canbus-api-openapi.yml",
+    "polymath-filesystem-api-openapi.yml",
+    "polymath-health-check-api-openapi.yml",
+    "polymath-livekit-api-openapi.yml",
+    "polymath-media-api-openapi.yml",
+    "polymath-ros-api-openapi.yml",
+    "polymath-systemd-api-openapi.yml",
+    "polymath-teleop-control-api-openapi.yml",
+    "polymath-vehicle-autonomy-api-openapi.yml",
+    "polymath-vehicle-operations-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

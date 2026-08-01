@@ -1,0 +1,16 @@
+generated: '2026-07-20'
+method: generated
+source: openapi/polymath-synapse-v2-openapi-original.json
+skills:
+- file: polymath-navigate-gps-waypoints.md
+  name: Navigate a Polymath robot with GPS waypoints
+  api: openapi/polymath-synapse-v2-openapi-original.json
+  operations: [get_health, get_device_uuid, gps_waypoints, polymath_feedback]
+- file: polymath-teleop-motion-command.md
+  name: Take exclusive teleop control and send a motion command
+  api: openapi/polymath-synapse-v2-openapi-original.json
+  operations: [acquire_lease, get_lease_status, get_nav_cmds, nav_cmd, release_lease]
+- file: polymath-set-reference-target.md
+  name: Set a reference target and read autonomy feedback
+  api: openapi/polymath-synapse-v2-openapi-original.json
+  operations: [set_reference_targets, set_reference_target_current_location, reference_targets, polymath_feedback]

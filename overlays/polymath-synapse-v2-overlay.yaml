@@ -1,0 +1,28 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Polymath Synapse API
+  version: 1.0.0
+extends: openapi/polymath-synapse-v2-openapi-original.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-enriched: '2026-07-20'
+    x-apievangelist-provider: polymath
+    x-apievangelist-category: robotics-autonomy
+- target: $.servers
+  update:
+  - url: https://polyglot.polymathrobotics.dev/api/synapse/{deviceId}/v2
+    description: >-
+      Polyglot gateway; deviceId selects the target real or simulated robot.
+      (The published OpenAPI declares no servers[]; this documents the gateway
+      routing described in the authentication guide.)
+    variables:
+      deviceId:
+        default: DEVICE_ID
+        description: Device identifier issued per account.
+- target: $.components.securitySchemes.HTTPBearer
+  update:
+    x-apievangelist-note: >-
+      Bearer token is obtained via an OAuth 2.0 client-credentials flow at
+      https://polyglot.polymathrobotics.dev/oauth/token (audience
+      https://api.polymathrobotics.dev/), then sent as Authorization: Bearer.

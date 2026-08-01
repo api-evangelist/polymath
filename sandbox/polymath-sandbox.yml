@@ -1,0 +1,27 @@
+generated: '2026-07-20'
+method: searched
+source: https://synapse.docs.polymathrobotics.dev/docs/reference
+docs:
+- https://www.polymathrobotics.com/blog/launch
+- https://github.com/polymathrobotics/caladan_examples
+description: >-
+  Caladan is Polymath's browser-based simulation environment - a set of
+  simulated vehicles and environments used to interact with Polymath autonomy
+  over the same REST API that drives real machines. Teams build and test
+  autonomous behaviors in Python (not ROS) before deploying to physical
+  vehicles. It runs in a web browser and needs no ROS, Gazebo, or Linux install.
+real_vs_simulated:
+  description: >-
+    The same Synapse API contract drives both a simulated Caladan vehicle and a
+    real Polymath-powered vehicle; the target is selected by the device the
+    credentials are issued for (gateway DEVICE_ID).
+  simulated_host_example: https://beta-caladan.polymathrobotics.dev/api/
+example_code:
+  repo: https://github.com/polymathrobotics/caladan_examples
+  language: python
+  entrypoint: caladan_api.py
+test_values:
+  notes: >-
+    No published magic test cards, tokens, or fixed test identifiers - the
+    sandbox is a live simulated robot, not a static fixture set. Credentials
+    (client_id / client_secret / device_id) are issued by Polymath.

@@ -1,0 +1,31 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/polymath-synapse-v2-openapi-original.json
+docs: https://synapse.docs.polymathrobotics.dev/docs/guides/authentication
+standards:
+- id: openapi-3.0
+  conforms: true
+  evidence: Published OpenAPI 3.0.2 document (polymath_synapse_v2_openapi.json).
+- id: oauth2-client-credentials
+  conforms: true
+  evidence: Authentication guide documents an OAuth 2.0 client-credentials token endpoint with audience.
+- id: http-bearer
+  conforms: true
+  evidence: components.securitySchemes.HTTPBearer type=http scheme=bearer.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Errors use a custom {status,message,error.details} envelope, not application/problem+json.
+- id: json-api
+  conforms: false
+- id: fhir-r4
+  conforms: false
+- id: scim2
+  conforms: false
+- id: odata
+  conforms: false
+- id: webhooks-asyncapi
+  conforms: false
+  evidence: No event/webhook or AsyncAPI surface; feedback is polled over REST.
+- id: cursor-pagination
+  conforms: false
+  evidence: Collections returned as full arrays; no paging parameters.

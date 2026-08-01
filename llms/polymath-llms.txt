@@ -1,0 +1,30 @@
+# Polymath Robotics
+
+> Polymath Robotics builds general autonomy and safety software for off-highway and industrial vehicles (tractors, loaders, dozers, mining trucks). The Synapse REST API commands a real or simulated Polymath-powered robot; the Caladan browser simulator lets teams build and test autonomous behaviors in Python before deploying to physical machines. Founded 2021, Y Combinator S22, San Francisco.
+
+## APIs
+
+- [Polymath Synapse API (reference)](https://synapse.docs.polymathrobotics.dev/docs/reference): REST API for waypoints, motion/vehicle commands, autonomy feedback, teleop control leases, and LiveKit media.
+- [OpenAPI 3.0.2 (raw)](https://synapse.docs.polymathrobotics.dev/polymath_synapse_v2_openapi.json): Machine-readable spec, 37 operations.
+
+## Auth
+
+- [Authentication guide](https://synapse.docs.polymathrobotics.dev/docs/guides/authentication): OAuth 2.0 client-credentials flow. POST client_id/client_secret/audience/grant_type to https://polyglot.polymathrobotics.dev/oauth/token, then send Authorization: Bearer <access_token>. Requests route through https://polyglot.polymathrobotics.dev/api/synapse/{DEVICE_ID}/v2.
+
+## Specs
+
+- OpenAPI: openapi/polymath-synapse-v2-openapi-original.json
+- Overlay (AE enhancements): overlays/polymath-synapse-v2-overlay.yaml
+- Error catalog: errors/polymath-problem-types.yml
+- Data model: data-model/polymath-data-model.yml
+- Conventions: conventions/polymath-conventions.yml
+- Authentication profile: authentication/polymath-authentication.yml
+
+## Docs
+
+- [Developer portal](https://synapse.docs.polymathrobotics.dev/)
+- [Caladan simulator + examples](https://github.com/polymathrobotics/caladan_examples)
+- [GitHub organization](https://github.com/polymathrobotics)
+- [Blog](https://www.polymathrobotics.com/blog)
+- [Terms of Service](https://www.polymathrobotics.com/legal/terms-of-service)
+- [Privacy Policy](https://www.polymathrobotics.com/legal/privacy-policy)

@@ -1,0 +1,37 @@
+generated: '2026-07-20'
+method: searched
+source: openapi/polymath-synapse-v2-openapi-original.json
+docs: https://synapse.docs.polymathrobotics.dev/docs/guides/authentication
+summary:
+  types:
+  - oauth2
+  - http
+  oauth2_flows:
+  - clientCredentials
+  notes: >-
+    The Synapse OpenAPI declares an HTTP Bearer security scheme (HTTPBearer).
+    The authentication guide documents that the bearer token is obtained via an
+    OAuth 2.0 client-credentials flow against the Polymath identity host, then
+    presented as `Authorization: Bearer <access_token>` on every Synapse call.
+oauth2:
+  grant_type: client_credentials
+  token_url: https://polyglot.polymathrobotics.dev/oauth/token
+  audience: https://api.polymathrobotics.dev/
+  request_fields:
+  - client_id
+  - client_secret
+  - audience
+  - grant_type
+  response_token_field: access_token
+  credentials_required:
+  - client_id
+  - client_secret
+  - device_id
+  gateway: https://polyglot.polymathrobotics.dev/api/synapse/{DEVICE_ID}/v2
+  scopes: none documented
+schemes:
+- name: HTTPBearer
+  type: http
+  scheme: bearer
+  sources:
+  - openapi/polymath-synapse-v2-openapi-original.json

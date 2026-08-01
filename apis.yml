@@ -1,22 +1,242 @@
 aid: polymath
-name: Polymath
-description: Polymath is a company surfaced as a portfolio company of y-combinator and added to the API
-  Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/polymath.png
+name: Polymath Robotics
+description: >-
+  Polymath Robotics builds general autonomy and safety software for off-highway
+  and industrial vehicles such as tractors, loaders, dozers, and mining trucks.
+  Its Synapse REST API lets developers command a real or simulated
+  Polymath-powered vehicle: sending GPS and relative waypoints, issuing motion
+  and vehicle commands, reading combined autonomy, navigation, and vehicle
+  feedback, managing exclusive teleoperation control leases, and streaming media
+  over LiveKit. Caladan, its browser-based simulation environment, lets teams
+  build and test autonomous behaviors in Python without ROS, Gazebo, or Linux
+  before deploying to physical machines. Founded in 2021 (YC S22), San Francisco.
 url: https://raw.githubusercontent.com/api-evangelist/polymath/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - y-combinator
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: profiled
+x-tier-reason: enriched-from-openapi
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
-- Company
-apis: []
+- Robotics
+- Autonomy
+- Industrial Vehicles
+- Off-Highway
+- Machine Learning
+- Simulation
+- Teleoperation
+- Automation
+- Artificial Intelligence
+- Unmanned Vehicles
+apis:
+- aid: polymath:polymath-canbus-api
+  name: Polymath Robotics CANBus API
+  description: The CANBus API from Polymath Robotics — 1 operation(s) for canbus.
+  humanURL: https://synapse.docs.polymathrobotics.dev/docs/reference
+  baseURL: https://polyglot.polymathrobotics.dev/api
+  tags:
+  - CANBus
+  properties:
+  - type: OpenAPI
+    url: openapi/polymath-canbus-api-openapi.yml
+  - type: ErrorCatalog
+    url: errors/polymath-problem-types.yml
+  - type: DataModel
+    url: data-model/polymath-data-model.yml
+- aid: polymath:polymath-filesystem-api
+  name: Polymath Robotics filesystem API
+  description: The filesystem API from Polymath Robotics — 3 operation(s) for filesystem.
+  humanURL: https://synapse.docs.polymathrobotics.dev/docs/reference
+  baseURL: https://polyglot.polymathrobotics.dev/api
+  tags:
+  - filesystem
+  properties:
+  - type: OpenAPI
+    url: openapi/polymath-filesystem-api-openapi.yml
+  - type: ErrorCatalog
+    url: errors/polymath-problem-types.yml
+  - type: DataModel
+    url: data-model/polymath-data-model.yml
+- aid: polymath:polymath-health-check-api
+  name: Polymath Robotics Health Check API
+  description: Contains UUID endpoint that can be used to health check the robot
+  humanURL: https://synapse.docs.polymathrobotics.dev/docs/reference
+  baseURL: https://polyglot.polymathrobotics.dev/api
+  tags:
+  - Health Check
+  properties:
+  - type: OpenAPI
+    url: openapi/polymath-health-check-api-openapi.yml
+  - type: ErrorCatalog
+    url: errors/polymath-problem-types.yml
+  - type: DataModel
+    url: data-model/polymath-data-model.yml
+- aid: polymath:polymath-livekit-api
+  name: Polymath Robotics Livekit API
+  description: The Livekit API from Polymath Robotics — 4 operation(s) for livekit.
+  humanURL: https://synapse.docs.polymathrobotics.dev/docs/reference
+  baseURL: https://polyglot.polymathrobotics.dev/api
+  tags:
+  - Livekit
+  properties:
+  - type: OpenAPI
+    url: openapi/polymath-livekit-api-openapi.yml
+  - type: ErrorCatalog
+    url: errors/polymath-problem-types.yml
+  - type: DataModel
+    url: data-model/polymath-data-model.yml
+- aid: polymath:polymath-media-api
+  name: Polymath Robotics Media API
+  description: All endpoints related to interacting with Robot's media resources
+  humanURL: https://synapse.docs.polymathrobotics.dev/docs/reference
+  baseURL: https://polyglot.polymathrobotics.dev/api
+  tags:
+  - Media
+  properties:
+  - type: OpenAPI
+    url: openapi/polymath-media-api-openapi.yml
+  - type: ErrorCatalog
+    url: errors/polymath-problem-types.yml
+  - type: DataModel
+    url: data-model/polymath-data-model.yml
+- aid: polymath:polymath-ros-api
+  name: Polymath Robotics ros API
+  description: The ros API from Polymath Robotics — 1 operation(s) for ros.
+  humanURL: https://synapse.docs.polymathrobotics.dev/docs/reference
+  baseURL: https://polyglot.polymathrobotics.dev/api
+  tags:
+  - ros
+  properties:
+  - type: OpenAPI
+    url: openapi/polymath-ros-api-openapi.yml
+  - type: ErrorCatalog
+    url: errors/polymath-problem-types.yml
+  - type: DataModel
+    url: data-model/polymath-data-model.yml
+- aid: polymath:polymath-systemd-api
+  name: Polymath Robotics systemd API
+  description: The systemd API from Polymath Robotics — 1 operation(s) for systemd.
+  humanURL: https://synapse.docs.polymathrobotics.dev/docs/reference
+  baseURL: https://polyglot.polymathrobotics.dev/api
+  tags:
+  - systemd
+  properties:
+  - type: OpenAPI
+    url: openapi/polymath-systemd-api-openapi.yml
+  - type: ErrorCatalog
+    url: errors/polymath-problem-types.yml
+  - type: DataModel
+    url: data-model/polymath-data-model.yml
+- aid: polymath:polymath-teleop-control-api
+  name: Polymath Robotics Teleop Control API
+  description: Endpoints for managing control leases
+  humanURL: https://synapse.docs.polymathrobotics.dev/docs/reference
+  baseURL: https://polyglot.polymathrobotics.dev/api
+  tags:
+  - Teleop Control
+  properties:
+  - type: OpenAPI
+    url: openapi/polymath-teleop-control-api-openapi.yml
+  - type: ErrorCatalog
+    url: errors/polymath-problem-types.yml
+  - type: DataModel
+    url: data-model/polymath-data-model.yml
+- aid: polymath:polymath-vehicle-autonomy-api
+  name: Polymath Robotics Vehicle Autonomy API
+  description: All endpoints related to interacting with Robot's autonomy operations here
+  humanURL: https://synapse.docs.polymathrobotics.dev/docs/reference
+  baseURL: https://polyglot.polymathrobotics.dev/api
+  tags:
+  - Vehicle Autonomy
+  properties:
+  - type: OpenAPI
+    url: openapi/polymath-vehicle-autonomy-api-openapi.yml
+  - type: ErrorCatalog
+    url: errors/polymath-problem-types.yml
+  - type: DataModel
+    url: data-model/polymath-data-model.yml
+- aid: polymath:polymath-vehicle-operations-api
+  name: Polymath Robotics Vehicle Operations API
+  description: All endpoints related to interacting with Robot's vehicle operations here
+  humanURL: https://synapse.docs.polymathrobotics.dev/docs/reference
+  baseURL: https://polyglot.polymathrobotics.dev/api
+  tags:
+  - Vehicle Operations
+  properties:
+  - type: OpenAPI
+    url: openapi/polymath-vehicle-operations-api-openapi.yml
+  - type: ErrorCatalog
+    url: errors/polymath-problem-types.yml
+  - type: DataModel
+    url: data-model/polymath-data-model.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+common:
+- type: DeveloperPortal
+  url: https://synapse.docs.polymathrobotics.dev/
+- type: Documentation
+  url: https://synapse.docs.polymathrobotics.dev/docs/reference
+- type: APIReference
+  url: https://synapse.docs.polymathrobotics.dev/docs/reference
+- type: GettingStarted
+  url: https://synapse.docs.polymathrobotics.dev/docs/guides/authentication
+- type: Blog
+  url: https://www.polymathrobotics.com/blog
+- type: Support
+  url: mailto:support@polymathrobotics.com
+- type: GitHubOrganization
+  url: https://github.com/polymathrobotics
+- type: TermsOfService
+  url: https://www.polymathrobotics.com/legal/terms-of-service
+- type: PrivacyPolicy
+  url: https://www.polymathrobotics.com/legal/privacy-policy
+- type: Website
+  url: https://www.polymathrobotics.com/
+- type: SourceCode
+  url: https://github.com/polymathrobotics/caladan_examples
+- type: AgenticAccess
+  url: agentic-access/polymath-agentic-access.yml
+- type: Authentication
+  url: authentication/polymath-authentication.yml
+- type: Packages
+  url: packages/polymath-packages.yml
+- type: MCPServer
+  url: mcp/polymath-mcp.yml
+- type: LLMsTxt
+  url: llms/polymath-llms.txt
+- type: Conformance
+  url: conformance/polymath-conformance.yml
+- type: Lifecycle
+  url: lifecycle/polymath-lifecycle.yml
+- type: Conventions
+  url: conventions/polymath-conventions.yml
+- type: Sandbox
+  url: sandbox/polymath-sandbox.yml
+- type: DomainSecurity
+  url: security/polymath-domain-security.yml
+- type: AgentSkill
+  url: skills/_index.yml
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 16
+  pass: local-v1

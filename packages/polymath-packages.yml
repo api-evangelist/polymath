@@ -1,0 +1,31 @@
+generated: '2026-07-20'
+method: derived
+source: https://github.com/polymathrobotics
+notes: >-
+  No first-party client SDK was found published to npm, PyPI, Maven, NuGet,
+  RubyGems, Packagist, or crates.io for the Synapse REST API. Polymath ships
+  first-party code on GitHub: reference example client code (caladan_examples)
+  and ROS 2 interface/driver packages. No `type: SDKs` pointer is emitted
+  because there is no registry-published, installable REST client library.
+packages:
+- language: python
+  registry: github
+  name: caladan_examples
+  url: https://github.com/polymathrobotics/caladan_examples
+  description: Reference Python example client (caladan_api.py) for calling the Synapse REST API.
+  official: true
+  kind: example-code
+- language: cmake
+  registry: github
+  name: polymath_msgs
+  url: https://github.com/polymathrobotics/polymath_msgs
+  description: Interface (message) definitions for customer applications to communicate with Polymath Autonomy Software over ROS 2.
+  official: true
+  kind: interface-definitions
+- language: cpp
+  registry: github
+  name: socketcan_adapter
+  url: https://github.com/polymathrobotics/socketcan_adapter
+  description: SocketCAN driver library for Linux PCs and ROS 2 nodes.
+  official: true
+  kind: driver

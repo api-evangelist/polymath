@@ -1,0 +1,56 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/polymath-synapse-v2-openapi-original.json
+format: custom
+envelope:
+  content_type: application/json
+  description: >-
+    Synapse does not use RFC 9457 application/problem+json. Application errors
+    return an ErrorResponse envelope; FastAPI-style HTTP exceptions return a
+    HTTPExceptionResponse; request validation returns HTTPValidationError.
+  shapes:
+  - name: ErrorResponse
+    fields:
+      status: '"error" (literal)'
+      message: human-readable error message
+      error.details: additional detail string (optional)
+  - name: HTTPExceptionResponse
+    fields:
+      detail: error detail string
+  - name: HTTPValidationError
+    fields:
+      detail: array of ValidationError (loc, msg, type)
+problems:
+- status: 400
+  title: Bad request / failed to generate token
+  meaning: The request was malformed or a LiveKit/token operation could not complete.
+  envelope: ErrorResponse | HTTPExceptionResponse
+- status: 401
+  title: Authentication required
+  meaning: Missing or invalid bearer token.
+  remediation: Obtain a fresh access_token via the OAuth2 client-credentials flow and send it in the Authorization header.
+  envelope: ErrorResponse | HTTPExceptionResponse
+- status: 403
+  title: Lease unavailable or not held
+  meaning: The teleop control lease is held by another user, or the caller does not hold the lease required for this operation.
+  remediation: Acquire the control lease (POST /v2/teleop-control/acquire) or wait for the current holder to release/transfer it.
+  envelope: ErrorResponse | HTTPExceptionResponse
+- status: 404
+  title: Resource not found
+  meaning: The referenced resource (device, file, room, reference target) does not exist.
+  envelope: ErrorResponse | HTTPExceptionResponse
+- status: 422
+  title: Validation error
+  meaning: Request body or parameters failed schema validation.
+  remediation: Correct the fields listed in detail[].loc.
+  envelope: HTTPValidationError
+- status: 500
+  title: Internal server error
+  meaning: Unexpected error on the robot/gateway.
+  envelope: ErrorResponse | HTTPExceptionResponse
+- status: 503
+  title: Service unavailable
+  meaning: The robot or an underlying subsystem is temporarily unavailable.
+- status: 504
+  title: Request timed out
+  meaning: The upstream robot did not respond within the gateway timeout.

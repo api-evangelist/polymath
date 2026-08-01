@@ -1,0 +1,82 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/polymath-synapse-v2-openapi-original.json
+description: >-
+  Entity graph derived from the Synapse OpenAPI component schemas and their
+  $ref links. The API is device-scoped: every call targets a single robot
+  (device) selected by the gateway DEVICE_ID, so Device is the implicit root.
+entities:
+- name: Device
+  description: A real or simulated Polymath-powered robot, identified by a UUID.
+  key_schemas: [UUID, UUIDData, UUIDResponse, VersionResponse, HealthStatusResponse]
+- name: ReferenceTarget
+  description: A named location or object placed in the robot's world frame.
+  key_schemas: [ReferenceTarget, ReferenceTargetsModel, ReferenceTargetSetData, GeoPoint]
+- name: GPSWaypoints
+  description: An ordered set of GPS waypoints (lat/lon/yaw) sent as a navigation goal.
+  key_schemas: [GPSWaypoints, GPSWaypointTransmissionData, GeoPoint, GoalPoses]
+- name: RelativeWaypoints
+  description: Waypoints expressed relative to the robot's current pose.
+  key_schemas: [RelativeWaypoints, RelativeCommand, RelativeWaypointTransmissionData]
+- name: MotionCommand
+  description: A motion/navigation command that changes the robot's autonomy state.
+  key_schemas: [MotionCommandAction, MotionCommandOptions, MotionCommandExecutionData, MotionCommandSummary, MotionCommandListResponse]
+- name: VehicleCommand
+  description: A vehicle-level command (e.g. actuators) distinct from navigation.
+  key_schemas: [VehicleCommandAction, VehicleCommandData, VehicleCommandOptionResponse]
+- name: PolymathFeedback
+  description: Combined autonomy, navigation, and vehicle feedback snapshot.
+  key_schemas: [PolymathFeedback, PolymathFeedbackData, NavigationFeedback, VehicleFeedback, CortexStatus, Pose, Position, NavSatFixModel]
+- name: ControlLease
+  description: An exclusive teleoperation control lease held by one user at a time.
+  key_schemas: [ControlLease, ControlResponse, TransferLeaseRequest]
+- name: LivekitRoom
+  description: A LiveKit media room and its tracks for the robot's streams.
+  key_schemas: [LivekitRoomInfo, LivekitRoomDetails, LivekitRoomResponse, LivekitTrack, LivekitTrackStats, LivekitTokenResponse, LivekitConfigResponse]
+- name: MediaStream
+  description: A media device/stream exposed by the robot.
+  key_schemas: [BaseStream, CodecEnum, MediaTypeEnum]
+- name: CostmapBoundary
+  description: Global costmap boundary / geofence for the operating area.
+  key_schemas: [CostmapBoundaryResponse, GeofenceBoundary, GeoPoint]
+relationships:
+- from: Device
+  to: ReferenceTarget
+  type: has_many
+  via: device (gateway DEVICE_ID scope)
+- from: Device
+  to: GPSWaypoints
+  type: has_many
+  via: navigation goals
+- from: Device
+  to: MotionCommand
+  type: has_many
+  via: motion-commands
+- from: Device
+  to: PolymathFeedback
+  type: has_one
+  via: polymath-feedback (current snapshot)
+- from: Device
+  to: ControlLease
+  type: has_one
+  via: teleop-control (single active lease)
+- from: Device
+  to: LivekitRoom
+  type: has_one
+  via: livekit/room
+- from: LivekitRoom
+  to: LivekitTrack
+  type: has_many
+  via: room/track
+- from: GPSWaypoints
+  to: GeoPoint
+  type: has_many
+  via: waypoints[]
+- from: PolymathFeedback
+  to: NavigationFeedback
+  type: has_one
+  via: navigation
+- from: PolymathFeedback
+  to: VehicleFeedback
+  type: has_one
+  via: vehicle

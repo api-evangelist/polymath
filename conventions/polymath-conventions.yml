@@ -1,0 +1,54 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/polymath-synapse-v2-openapi-original.json
+docs: https://synapse.docs.polymathrobotics.dev/docs/guides/authentication
+authentication:
+  style: OAuth 2.0 client-credentials bearer token
+  header: 'Authorization: Bearer <access_token>'
+  token_url: https://polyglot.polymathrobotics.dev/oauth/token
+  see: authentication/polymath-authentication.yml
+versioning:
+  scheme: uri-path
+  current: v2
+  version_string: 2.0.0
+  example: /v2/health
+  see: lifecycle/polymath-lifecycle.yml
+gateway_addressing:
+  description: >-
+    Requests are routed to a specific robot through the Polyglot gateway, which
+    prefixes the Synapse v2 paths with a per-device segment.
+  pattern: https://polyglot.polymathrobotics.dev/api/synapse/{DEVICE_ID}/v2/<path>
+  device_selector: DEVICE_ID path segment (issued per account)
+teleop_control_lease:
+  description: >-
+    Write/control operations require an exclusive control lease. A caller
+    acquires the lease, renews it before expiry, and may release or transfer it.
+    Operations attempted without the lease return 403.
+  operations:
+  - acquire_lease
+  - renew_lease
+  - release_lease
+  - transfer_lease
+  - get_lease_status
+idempotency:
+  supported: false
+  notes: No Idempotency-Key header or idempotent-retry contract is documented; control commands are stateful and lease-gated.
+pagination:
+  supported: false
+  notes: Collection endpoints (reference-targets, media/streams, filesystem lists) return full arrays; no cursor/offset paging documented.
+error_envelope:
+  format: custom (not RFC 9457)
+  primary_shape: '{ status: "error", message, error.details }'
+  see: errors/polymath-problem-types.yml
+rate_limit_signaling:
+  documented: false
+media_streaming:
+  transport: LiveKit (WebRTC)
+  operations:
+  - get_livekit_config
+  - generate_livekit_token
+  - create_room
+  - get_room
+  - delete_room
+  - create_track
+  - delete_track
