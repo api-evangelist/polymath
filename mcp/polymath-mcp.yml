@@ -2,196 +2,200 @@ generated: '2026-07-20'
 method: derived
 status: candidate
 source: openapi/polymath-synapse-v2-openapi-original.json
-notes: >-
-  No official hosted/remote MCP server was found for Polymath. This is a
-  candidate tool surface derived one-to-one from the Synapse OpenAPI
-  operations; it is not an endorsed Polymath server.
+notes: No official hosted/remote MCP server was found for Polymath. This is a candidate tool surface derived
+  one-to-one from the Synapse OpenAPI operations; it is not an endorsed Polymath server.
 server:
   name: polymath-synapse
   transport: http
 tools:
 - name: get_version
-  description: "Get the version of the Polymath system"
+  description: Get the version of the Polymath system
   method: GET
-  path: "/v2/version"
+  path: /v2/version
   source_operation: openapi/polymath-synapse-v2-openapi-original.json#get_version
 - name: get_health
-  description: "Health check endpoint"
+  description: Health check endpoint
   method: GET
-  path: "/v2/health"
+  path: /v2/health
   source_operation: openapi/polymath-synapse-v2-openapi-original.json#get_health
 - name: get_device_uuid
-  description: "Get the UUID of the Polymath system"
+  description: Get the UUID of the Polymath system
   method: GET
-  path: "/v2/uuid"
+  path: /v2/uuid
   source_operation: openapi/polymath-synapse-v2-openapi-original.json#get_device_uuid
 - name: polymath_feedback
-  description: "Get the combined Autonomy, Navigation and Vehicle feedback from the Polymath system"
+  description: Get the combined Autonomy, Navigation and Vehicle feedback from the Polymath system
   method: GET
-  path: "/v2/polymath-feedback"
+  path: /v2/polymath-feedback
   source_operation: openapi/polymath-synapse-v2-openapi-original.json#polymath_feedback
 - name: costmap_boundary
-  description: "Get global costmap boundary coordinates"
+  description: Get global costmap boundary coordinates
   method: GET
-  path: "/v2/costmap/boundary"
+  path: /v2/costmap/boundary
   source_operation: openapi/polymath-synapse-v2-openapi-original.json#costmap_boundary
 - name: navigation_path_options
-  description: "Get the available Navigation Path Options and associated Parameters"
+  description: Get the available Navigation Path Options and associated Parameters
   method: GET
-  path: "/v2/navigation-path-options"
+  path: /v2/navigation-path-options
   source_operation: openapi/polymath-synapse-v2-openapi-original.json#navigation_path_options
 - name: vehicle_commands
-  description: "Get the available Vehicle Commands and associated Parameters"
+  description: Get the available Vehicle Commands and associated Parameters
   method: GET
-  path: "/v2/vehicle-commands"
+  path: /v2/vehicle-commands
   source_operation: openapi/polymath-synapse-v2-openapi-original.json#vehicle_commands
 - name: get_nav_cmds
-  description: "Get the available motion commands"
+  description: Get the available motion commands
   method: GET
-  path: "/v2/motion-commands"
+  path: /v2/motion-commands
   source_operation: openapi/polymath-synapse-v2-openapi-original.json#get_nav_cmds
 - name: reference_targets
-  description: "Get all previously set reference targets"
+  description: Get all previously set reference targets
   method: GET
-  path: "/v2/reference-targets"
+  path: /v2/reference-targets
   source_operation: openapi/polymath-synapse-v2-openapi-original.json#reference_targets
 - name: set_reference_targets
-  description: "Set the location and details of a reference location or an object"
+  description: Set the location and details of a reference location or an object
   method: POST
-  path: "/v2/reference-targets"
+  path: /v2/reference-targets
   source_operation: openapi/polymath-synapse-v2-openapi-original.json#set_reference_targets
 - name: set_reference_target_current_location
-  description: "Set a reference target at the current robot location"
+  description: Set a reference target at the current robot location
   method: POST
-  path: "/v2/reference-targets/current-location"
+  path: /v2/reference-targets/current-location
   source_operation: openapi/polymath-synapse-v2-openapi-original.json#set_reference_target_current_location
 - name: gps_waypoints
-  description: "Send a set of gps waypoints to the robot"
+  description: Send a set of gps waypoints to the robot
   method: POST
-  path: "/v2/gps-waypoints"
+  path: /v2/gps-waypoints
   source_operation: openapi/polymath-synapse-v2-openapi-original.json#gps_waypoints
 - name: relative_waypoints
-  description: "Send a set of relative waypoints to the robot"
+  description: Send a set of relative waypoints to the robot
   method: POST
-  path: "/v2/relative-waypoints"
+  path: /v2/relative-waypoints
   source_operation: openapi/polymath-synapse-v2-openapi-original.json#relative_waypoints
 - name: nav_cmd
-  description: "Send a motion command to the robot to change its current state"
+  description: Send a motion command to the robot to change its current state
   method: POST
-  path: "/v2/motion-command"
+  path: /v2/motion-command
   source_operation: openapi/polymath-synapse-v2-openapi-original.json#nav_cmd
 - name: vehicle_command
-  description: "Send a vehicle command to the robot"
+  description: Send a vehicle command to the robot
   method: POST
-  path: "/v2/vehicle-command"
+  path: /v2/vehicle-command
   source_operation: openapi/polymath-synapse-v2-openapi-original.json#vehicle_command
 - name: list_media_devices
-  description: "List Media Devices"
+  description: List Media Devices
   method: GET
-  path: "/v2/media/streams"
+  path: /v2/media/streams
   source_operation: openapi/polymath-synapse-v2-openapi-original.json#list_media_devices
 - name: get_livekit_config
-  description: "Get LiveKit discovery configuration"
+  description: Get LiveKit discovery configuration
   method: GET
-  path: "/v2/livekit/config"
+  path: /v2/livekit/config
   source_operation: openapi/polymath-synapse-v2-openapi-original.json#get_livekit_config
 - name: generate_livekit_token
-  description: "Generate a Livekit access token"
+  description: Generate a Livekit access token
   method: POST
-  path: "/v2/livekit/token"
+  path: /v2/livekit/token
   source_operation: openapi/polymath-synapse-v2-openapi-original.json#generate_livekit_token
 - name: get_room
-  description: "Get the current status of the room"
+  description: Get the current status of the room
   method: GET
-  path: "/v2/livekit/room"
+  path: /v2/livekit/room
   source_operation: openapi/polymath-synapse-v2-openapi-original.json#get_room
 - name: create_room
-  description: "Create a livekit room on this robot"
+  description: Create a livekit room on this robot
   method: POST
-  path: "/v2/livekit/room"
+  path: /v2/livekit/room
   source_operation: openapi/polymath-synapse-v2-openapi-original.json#create_room
 - name: delete_room
-  description: "Disconnect from the current room"
+  description: Disconnect from the current room
   method: DELETE
-  path: "/v2/livekit/room"
+  path: /v2/livekit/room
   source_operation: openapi/polymath-synapse-v2-openapi-original.json#delete_room
 - name: create_track
-  description: "Create a track on the current room"
+  description: Create a track on the current room
   method: POST
-  path: "/v2/livekit/room/track"
+  path: /v2/livekit/room/track
   source_operation: openapi/polymath-synapse-v2-openapi-original.json#create_track
 - name: delete_track
-  description: "Delete a track from the current room"
+  description: Delete a track from the current room
   method: DELETE
-  path: "/v2/livekit/room/track"
+  path: /v2/livekit/room/track
   source_operation: openapi/polymath-synapse-v2-openapi-original.json#delete_track
 - name: get_can_interfaces
-  description: "Get the list of available CAN interfaces on the system"
+  description: Get the list of available CAN interfaces on the system
   method: GET
-  path: "/v2/canbus/interfaces"
+  path: /v2/canbus/interfaces
   source_operation: openapi/polymath-synapse-v2-openapi-original.json#get_can_interfaces
 - name: acquire_lease
-  description: "Acquire control lease granting exclusive access to teleop"
+  description: Acquire control lease granting exclusive access to teleop
   method: POST
-  path: "/v2/teleop-control/acquire"
+  path: /v2/teleop-control/acquire
   source_operation: openapi/polymath-synapse-v2-openapi-original.json#acquire_lease
 - name: renew_lease
-  description: "Renew existing control lease"
+  description: Renew existing control lease
   method: POST
-  path: "/v2/teleop-control/renew"
+  path: /v2/teleop-control/renew
   source_operation: openapi/polymath-synapse-v2-openapi-original.json#renew_lease
 - name: release_lease
-  description: "Release the current control lease"
+  description: Release the current control lease
   method: POST
-  path: "/v2/teleop-control/release"
+  path: /v2/teleop-control/release
   source_operation: openapi/polymath-synapse-v2-openapi-original.json#release_lease
 - name: transfer_lease
-  description: "Transfer control lease to another user"
+  description: Transfer control lease to another user
   method: POST
-  path: "/v2/teleop-control/transfer"
+  path: /v2/teleop-control/transfer
   source_operation: openapi/polymath-synapse-v2-openapi-original.json#transfer_lease
 - name: get_lease_status
-  description: "Get current control lease status"
+  description: Get current control lease status
   method: GET
-  path: "/v2/teleop-control/status"
+  path: /v2/teleop-control/status
   source_operation: openapi/polymath-synapse-v2-openapi-original.json#get_lease_status
 - name: proxy_systemd_request
-  description: "Proxy Systemd Request"
+  description: Proxy Systemd Request
   method: GET
-  path: "/v2/systemd/{path}"
+  path: /v2/systemd/{path}
   source_operation: openapi/polymath-synapse-v2-openapi-original.json#proxy_systemd_request
 - name: proxy_systemd_request
-  description: "Proxy Systemd Request"
+  description: Proxy Systemd Request
   method: POST
-  path: "/v2/systemd/{path}"
+  path: /v2/systemd/{path}
   source_operation: openapi/polymath-synapse-v2-openapi-original.json#proxy_systemd_request
 - name: health_check
-  description: "Health check for dufs service"
+  description: Health check for dufs service
   method: GET
-  path: "/v2/fs/health"
+  path: /v2/fs/health
   source_operation: openapi/polymath-synapse-v2-openapi-original.json#health_check
 - name: list_files_and_directories
-  description: "List files and directories recursively"
+  description: List files and directories recursively
   method: GET
-  path: "/v2/fs/recursive-list"
+  path: /v2/fs/recursive-list
   source_operation: openapi/polymath-synapse-v2-openapi-original.json#list_files_and_directories
 - name: get_file_or_directory
-  description: "Get file or directory"
+  description: Get file or directory
   method: GET
-  path: "/v2/fs/{path}"
+  path: /v2/fs/{path}
   source_operation: openapi/polymath-synapse-v2-openapi-original.json#get_file_or_directory
 - name: delete_file_or_directory
-  description: "Delete file or directory"
+  description: Delete file or directory
   method: DELETE
-  path: "/v2/fs/{path}"
+  path: /v2/fs/{path}
   source_operation: openapi/polymath-synapse-v2-openapi-original.json#delete_file_or_directory
 - name: proxy_systemd_request
-  description: "Proxy Systemd Request"
+  description: Proxy Systemd Request
   method: GET
-  path: "/v2/ros/{path}"
+  path: /v2/ros/{path}
   source_operation: openapi/polymath-synapse-v2-openapi-original.json#proxy_systemd_request
 - name: proxy_systemd_request
-  description: "Proxy Systemd Request"
+  description: Proxy Systemd Request
   method: POST
-  path: "/v2/ros/{path}"
+  path: /v2/ros/{path}
   source_operation: openapi/polymath-synapse-v2-openapi-original.json#proxy_systemd_request
+deployment:
+  mode: none
+  verified: derived
+  tools: 37
+  checked: '2026-08-12'
+  source: catalog MCP census

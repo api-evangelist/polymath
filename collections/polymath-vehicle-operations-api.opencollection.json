@@ -1,0 +1,44 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Polymath API Service CANBus Vehicle Operations API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Vehicle Operations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the available Vehicle Commands and associated Parameters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/vehicle-commands"
+          },
+          "docs": "Returns available vehicle command options and configurable parameters."
+        },
+        {
+          "info": {
+            "name": "Send a vehicle command to the robot",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/vehicle-command",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends a vehicle command to the robot."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

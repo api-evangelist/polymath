@@ -1,0 +1,51 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Polymath API Service CANBus Health Check API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Health Check",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the version of the Polymath system",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/version"
+          },
+          "docs": "Returns the current Polymath Synapse and polymath_core commit SHAs."
+        },
+        {
+          "info": {
+            "name": "Health check endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/health"
+          },
+          "docs": "Returns a basic self health status response. This endpoint is used to verify that the Polymath Synapse API is running and responsive."
+        },
+        {
+          "info": {
+            "name": "Get the UUID of the Polymath system",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/uuid"
+          },
+          "docs": "Returns the device UUID derived from its MAC address. Deprecated; use `/health`."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

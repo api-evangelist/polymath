@@ -1,0 +1,180 @@
+{
+  "item": [
+    {
+      "id": "b2463158-f7d5-4b76-a25f-411596c045d0",
+      "name": "CANBus",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3c2c4de0-c292-4f3b-939c-f5f7c9af1c79",
+          "name": "Get the list of available CAN interfaces on the system",
+          "request": {
+            "name": "Get the list of available CAN interfaces on the system",
+            "description": {
+              "content": "Returns available CAN interfaces on the system.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "canbus",
+                "interfaces"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a67cbe83-01de-46bd-93d6-97de4d6d7398",
+              "name": "Available CAN interfaces.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "canbus",
+                    "interfaces"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"data\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "677917a4-289c-43f4-99c3-6be3e0c45db3",
+              "name": "Failed to retrieve CAN interfaces",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "canbus",
+                    "interfaces"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"message\": \"string\",\n  \"error\": {\n    \"details\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d0e546ca-26bd-4bbc-a238-92d145a7d45f",
+              "name": "An unexpected error occurred",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "canbus",
+                    "interfaces"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"message\": \"string\",\n  \"error\": {\n    \"details\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f0f1efbd-de27-4550-8f72-e82a71a14249",
+    "name": "Polymath API Service CANBus API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Polymath API service to interact with a real or simulated polymath-powered robot\n\nContact Support:\n Name: Polymath Support\n Email: api@polymathrobotics.com",
+      "type": "text/plain"
+    }
+  }
+}

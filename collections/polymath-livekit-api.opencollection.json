@@ -1,0 +1,168 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Polymath API Service CANBus Livekit API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Livekit",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get LiveKit discovery configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/livekit/config"
+          },
+          "docs": "Returns the configured discovery values and effective LiveKit URL."
+        },
+        {
+          "info": {
+            "name": "Generate a Livekit access token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/livekit/token",
+            "params": [
+              {
+                "name": "identity",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "room_name",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Generates a LiveKit access token for the specified identity and room."
+        },
+        {
+          "info": {
+            "name": "Get the current status of the room",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/livekit/room"
+          },
+          "docs": "Returns the current LiveKit room status."
+        },
+        {
+          "info": {
+            "name": "Create a livekit room on this robot",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/livekit/room",
+            "params": [
+              {
+                "name": "room_name",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Connects this robot to the specified LiveKit room."
+        },
+        {
+          "info": {
+            "name": "Disconnect from the current room",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v2/livekit/room"
+          },
+          "docs": "Disconnects this robot from the current LiveKit room."
+        },
+        {
+          "info": {
+            "name": "Create a track on the current room",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/livekit/room/track",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fps",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "codec",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "media_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "stream_path",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "use_experimental_reader",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "width",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "height",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "max_bitrate_kbps",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Creates and publishes a track in the current LiveKit room."
+        },
+        {
+          "info": {
+            "name": "Delete a track from the current room",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v2/livekit/room/track",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Deletes a track from the current LiveKit room."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

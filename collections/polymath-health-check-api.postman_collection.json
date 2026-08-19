@@ -1,0 +1,284 @@
+{
+  "item": [
+    {
+      "id": "80d53142-9341-4a95-9786-988759792ad5",
+      "name": "Health Check",
+      "description": {
+        "content": "Contains UUID endpoint that can be used to health check the robot",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "92b88a92-8e19-40fb-8678-90429036d697",
+          "name": "Get the version of the Polymath system",
+          "request": {
+            "name": "Get the version of the Polymath system",
+            "description": {
+              "content": "Returns the current Polymath Synapse and polymath_core commit SHAs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "version"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "100300dd-fcd3-4cf9-86ca-56cd8ebfa0a8",
+              "name": "Polymath Synapse and polymath_core commit SHAs.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"commit_sha\": \"string\",\n  \"polymath_core_commit_sha\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "83f93dcf-90d2-49af-9f38-5088005ec0eb",
+          "name": "Health check endpoint",
+          "request": {
+            "name": "Health check endpoint",
+            "description": {
+              "content": "Returns a basic self health status response. This endpoint is used to verify that the Polymath Synapse API is running and responsive.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "health"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8ce4ceb6-e0d2-42e4-9094-d0bd020eab00",
+              "name": "Health status.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "health"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f5616bb9-1a9e-4f1b-bc3a-e1fe6bc9bd63",
+          "name": "Get the UUID of the Polymath system",
+          "request": {
+            "name": "Get the UUID of the Polymath system",
+            "description": {
+              "content": "Returns the device UUID derived from its MAC address. Deprecated; use `/health`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "uuid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f097c281-6cfa-44aa-8893-2801faa26fb7",
+              "name": "Device UUID.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"uuid\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "23a0add2-ef01-4aee-a439-3b7d0fb62630",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "uuid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"message\": \"string\",\n  \"error\": {\n    \"details\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "fec7c51f-5274-4df1-ba05-d468e451ed0c",
+    "name": "Polymath API Service CANBus Health Check API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Polymath API service to interact with a real or simulated polymath-powered robot\n\nContact Support:\n Name: Polymath Support\n Email: api@polymathrobotics.com",
+      "type": "text/plain"
+    }
+  }
+}

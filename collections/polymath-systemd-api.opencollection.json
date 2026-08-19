@@ -1,0 +1,54 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Polymath API Service CANBus systemd API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "systemd",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Proxy Systemd Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/systemd/:path",
+            "params": [
+              {
+                "name": "path",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Reverse proxy for Polymath systemd API requests. Please refer to the API documentation for details on available endpoints.\n\nForwards all requests under /v2/systemd/* to the systemd API service\nat POLYMATH_SYSTEMD_API_IP:POLYMATH_SYSTEMD_API_PORT.\n\nE.g. to list user services, send a GET request to: `/v2/systemd/list/user`"
+        },
+        {
+          "info": {
+            "name": "Proxy Systemd Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/systemd/:path",
+            "params": [
+              {
+                "name": "path",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Reverse proxy for Polymath systemd API requests. Please refer to the API documentation for details on available endpoints.\n\nForwards all requests under /v2/systemd/* to the systemd API service\nat POLYMATH_SYSTEMD_API_IP:POLYMATH_SYSTEMD_API_PORT.\n\nE.g. to list user services, send a GET request to: `/v2/systemd/list/user`"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,144 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Polymath API Service CANBus Vehicle Autonomy API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Vehicle Autonomy",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the combined Autonomy, Navigation and Vehicle feedback from the Polymath system",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/polymath-feedback"
+          },
+          "docs": "Returns combined autonomy, navigation, and vehicle feedback from the Polymath system."
+        },
+        {
+          "info": {
+            "name": "Get global costmap boundary coordinates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/costmap/boundary"
+          },
+          "docs": "Returns the latest latitude/longitude coordinates for the four corners of the global costmap boundary."
+        },
+        {
+          "info": {
+            "name": "Get the available Navigation Path Options and associated Parameters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/navigation-path-options"
+          },
+          "docs": "Returns available navigation path options and configurable parameters."
+        },
+        {
+          "info": {
+            "name": "Get the available motion commands",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/motion-commands"
+          },
+          "docs": "Returns available motion commands that can be sent to the Polymath system."
+        },
+        {
+          "info": {
+            "name": "Get all previously set reference targets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/reference-targets"
+          },
+          "docs": "Returns all previously set reference targets."
+        },
+        {
+          "info": {
+            "name": "Set the location and details of a reference location or an object",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/reference-targets",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sets one or more reference targets for relative navigation. Each target may include optional `time_validity` and `recorded_speed_m_s` metadata. Use `POST /relative-waypoints` to send waypoints relative to these targets."
+        },
+        {
+          "info": {
+            "name": "Set a reference target at the current robot location",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/reference-targets/current-location"
+          },
+          "docs": "Creates a `previous_location` reference target from the robot's current GPS pose for subsequent relative navigation."
+        },
+        {
+          "info": {
+            "name": "Send a set of gps waypoints to the robot",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/gps-waypoints",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends GPS waypoints and navigation options to the robot."
+        },
+        {
+          "info": {
+            "name": "Send a set of relative waypoints to the robot",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/relative-waypoints",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends relative waypoints and navigation options to the robot."
+        },
+        {
+          "info": {
+            "name": "Send a motion command to the robot to change its current state",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/motion-command",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends a motion command to change the robot motion state. Supported commands: `STOP` (0), `PAUSE` (1), and `RESUME` (2)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

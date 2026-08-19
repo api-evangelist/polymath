@@ -1,0 +1,103 @@
+{
+  "item": [
+    {
+      "id": "68b42857-960d-4b34-af19-09a47ae934f6",
+      "name": "Media",
+      "description": {
+        "content": "All endpoints related to interacting with Robot's media resources",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "38a65624-ccea-491f-b062-d3f11ea94609",
+          "name": "List Media Devices",
+          "request": {
+            "name": "List Media Devices",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "media",
+                "streams"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3e59ca02-3416-44f8-9398-7da807bff939",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "media",
+                    "streams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"media_type\": \"ros\",\n    \"data\": {}\n  },\n  {\n    \"media_type\": \"ros\",\n    \"data\": {}\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b584a21b-f9f4-47a2-b7be-9d54d9d25a19",
+    "name": "Polymath API Service CANBus Media API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Polymath API service to interact with a real or simulated polymath-powered robot\n\nContact Support:\n Name: Polymath Support\n Email: api@polymathrobotics.com",
+      "type": "text/plain"
+    }
+  }
+}

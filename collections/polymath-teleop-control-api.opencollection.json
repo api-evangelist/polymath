@@ -1,0 +1,101 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Polymath API Service CANBus Teleop Control API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Teleop Control",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Acquire control lease granting exclusive access to teleop",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/teleop-control/acquire",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Acquire control lease if none exists or has expired."
+        },
+        {
+          "info": {
+            "name": "Renew existing control lease",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/teleop-control/renew",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Renew an existing lease. Only the current lease holder can renew."
+        },
+        {
+          "info": {
+            "name": "Release the current control lease",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/teleop-control/release",
+            "params": [
+              {
+                "name": "force",
+                "value": "",
+                "type": "query",
+                "description": "If true, release the lease regardless of who holds it. Requires valid bearer token; no additional admin validation exists."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Explicitly release the current lease."
+        },
+        {
+          "info": {
+            "name": "Transfer control lease to another user",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/teleop-control/transfer",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Transfer the lease to another user. Only the current lease holder can transfer."
+        },
+        {
+          "info": {
+            "name": "Get current control lease status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/teleop-control/status"
+          },
+          "docs": "Get current lease status and lease holder identity."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

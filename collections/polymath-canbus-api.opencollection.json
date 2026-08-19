@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Polymath API Service CANBus API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "CANBus",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the list of available CAN interfaces on the system",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/canbus/interfaces"
+          },
+          "docs": "Returns available CAN interfaces on the system."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

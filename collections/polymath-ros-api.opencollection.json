@@ -1,0 +1,54 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Polymath API Service CANBus ros API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ros",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Proxy Systemd Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v2/ros/:path",
+            "params": [
+              {
+                "name": "path",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Reverse proxy for RESTful ROS2 API requests. Please refer to the API documentation for details on available endpoints."
+        },
+        {
+          "info": {
+            "name": "Proxy Systemd Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v2/ros/:path",
+            "params": [
+              {
+                "name": "path",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Reverse proxy for RESTful ROS2 API requests. Please refer to the API documentation for details on available endpoints."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

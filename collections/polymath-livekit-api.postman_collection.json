@@ -1,0 +1,1293 @@
+{
+  "item": [
+    {
+      "id": "ab9170ec-51d2-41c5-b188-54df05d17377",
+      "name": "Livekit",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "aea348ac-be2e-4444-a82b-dc98d30c3024",
+          "name": "Get LiveKit discovery configuration",
+          "request": {
+            "name": "Get LiveKit discovery configuration",
+            "description": {
+              "content": "Returns the configured discovery values and effective LiveKit URL.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "livekit",
+                "config"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "94bd2f5d-fefe-453d-a18d-faca0de11ab1",
+              "name": "Effective LiveKit discovery values.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "livekit",
+                    "config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"room_name\": \"string\",\n  \"bridge_identity\": \"string\",\n  \"livekit_url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "47ec7906-3e5b-43ba-8bee-4369c2eda9c1",
+          "name": "Generate a Livekit access token",
+          "request": {
+            "name": "Generate a Livekit access token",
+            "description": {
+              "content": "Generates a LiveKit access token for the specified identity and room.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "livekit",
+                "token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "identity",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "room_name",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a122eda1-c870-419b-8407-91fe917aa100",
+              "name": "Generated LiveKit access token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "livekit",
+                    "token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "identity",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "room_name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"token\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5fa8789e-e248-4695-a693-de782833855c",
+              "name": "Failed to generate token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "livekit",
+                    "token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "identity",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "room_name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5d1a37ba-4bc5-45e7-b145-cbba93c114c7",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "livekit",
+                    "token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "identity",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "room_name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dc5dad54-72ae-449a-821d-d7f29b9c8372",
+          "name": "Get the current status of the room",
+          "request": {
+            "name": "Get the current status of the room",
+            "description": {
+              "content": "Returns the current LiveKit room status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "livekit",
+                "room"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "35fe8942-c999-4129-919f-dc7fda5ae9a8",
+              "name": "Current LiveKit room status.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "livekit",
+                    "room"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"alive\": false,\n  \"message\": \"string\",\n  \"room\": {\n    \"room\": {\n      \"name\": \"string\"\n    },\n    \"hostname\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2c1fd74a-5dbc-4eea-9cfd-d0c4c14babe8",
+          "name": "Create a livekit room on this robot",
+          "request": {
+            "name": "Create a livekit room on this robot",
+            "description": {
+              "content": "Connects this robot to the specified LiveKit room.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "livekit",
+                "room"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "room_name",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8d3d95f9-d290-42b3-95b5-022e1f31c752",
+              "name": "Room status after connecting to LiveKit.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "livekit",
+                    "room"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "room_name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"alive\": false,\n  \"message\": \"string\",\n  \"room\": {\n    \"room\": {\n      \"name\": \"string\"\n    },\n    \"hostname\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a8ece1cf-0617-4ff3-beee-8ac9faaf2f0f",
+              "name": "Invalid room request (for example, empty or invalid room name)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "livekit",
+                    "room"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "room_name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c510a7c0-9fc2-41d5-9a03-d6ecbaf377ab",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "livekit",
+                    "room"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "room_name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e81c80d7-b6fb-48bc-938e-20a81acc7b40",
+              "name": "Failed to connect to the room",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "livekit",
+                    "room"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "room_name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "61f0ef20-4fe6-4f70-8182-9764ee212a30",
+          "name": "Disconnect from the current room",
+          "request": {
+            "name": "Disconnect from the current room",
+            "description": {
+              "content": "Disconnects this robot from the current LiveKit room.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "livekit",
+                "room"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "51dc91d5-5cb1-4f54-8fe1-799230952140",
+              "name": "Room status after disconnecting from LiveKit.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "livekit",
+                    "room"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"alive\": false,\n  \"message\": \"string\",\n  \"room\": {\n    \"room\": {\n      \"name\": \"string\"\n    },\n    \"hostname\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9bf30ee9-f92a-4b7e-a404-eb8afa411a03",
+              "name": "Failed to disconnect the room",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "livekit",
+                    "room"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "14432e23-f501-483e-8d75-90944ba33312",
+          "name": "Create a track on the current room",
+          "request": {
+            "name": "Create a track on the current room",
+            "description": {
+              "content": "Creates and publishes a track in the current LiveKit room.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "livekit",
+                "room",
+                "track"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "fps",
+                  "value": "30"
+                },
+                {
+                  "disabled": false,
+                  "key": "codec",
+                  "value": "H264"
+                },
+                {
+                  "disabled": false,
+                  "key": "media_type",
+                  "value": "media_device"
+                },
+                {
+                  "disabled": false,
+                  "key": "stream_path",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "use_experimental_reader",
+                  "value": "false"
+                },
+                {
+                  "disabled": false,
+                  "key": "width",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "height",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "max_bitrate_kbps",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fdf8b15a-a21b-4cd4-b7a5-58624b59d098",
+              "name": "Room status after track creation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "livekit",
+                    "room",
+                    "track"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fps",
+                      "value": "30"
+                    },
+                    {
+                      "key": "codec",
+                      "value": "H264"
+                    },
+                    {
+                      "key": "media_type",
+                      "value": "media_device"
+                    },
+                    {
+                      "key": "stream_path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "use_experimental_reader",
+                      "value": "false"
+                    },
+                    {
+                      "key": "width",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "height",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max_bitrate_kbps",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"alive\": false,\n  \"message\": \"string\",\n  \"room\": {\n    \"room\": {\n      \"name\": \"string\"\n    },\n    \"hostname\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fae839b4-a794-4f63-b644-9f657d2d56c2",
+              "name": "Invalid track request (for example, no room, invalid configuration, or duplicate track name)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "livekit",
+                    "room",
+                    "track"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fps",
+                      "value": "30"
+                    },
+                    {
+                      "key": "codec",
+                      "value": "H264"
+                    },
+                    {
+                      "key": "media_type",
+                      "value": "media_device"
+                    },
+                    {
+                      "key": "stream_path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "use_experimental_reader",
+                      "value": "false"
+                    },
+                    {
+                      "key": "width",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "height",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max_bitrate_kbps",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "69ac1a7c-d42b-460f-bea6-34d79b7355d0",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "livekit",
+                    "room",
+                    "track"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fps",
+                      "value": "30"
+                    },
+                    {
+                      "key": "codec",
+                      "value": "H264"
+                    },
+                    {
+                      "key": "media_type",
+                      "value": "media_device"
+                    },
+                    {
+                      "key": "stream_path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "use_experimental_reader",
+                      "value": "false"
+                    },
+                    {
+                      "key": "width",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "height",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max_bitrate_kbps",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0d2ef5ab-9b4d-4034-ab1f-579f5778bfb3",
+              "name": "Failed to publish track",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "livekit",
+                    "room",
+                    "track"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fps",
+                      "value": "30"
+                    },
+                    {
+                      "key": "codec",
+                      "value": "H264"
+                    },
+                    {
+                      "key": "media_type",
+                      "value": "media_device"
+                    },
+                    {
+                      "key": "stream_path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "use_experimental_reader",
+                      "value": "false"
+                    },
+                    {
+                      "key": "width",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "height",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max_bitrate_kbps",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "95958cfd-4963-4a3d-9a62-e32cfc408870",
+          "name": "Delete a track from the current room",
+          "request": {
+            "name": "Delete a track from the current room",
+            "description": {
+              "content": "Deletes a track from the current LiveKit room.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "livekit",
+                "room",
+                "track"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d87f5467-0d71-4d34-8837-2e438f5b475e",
+              "name": "Room status after track deletion.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "livekit",
+                    "room",
+                    "track"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"alive\": false,\n  \"message\": \"string\",\n  \"room\": {\n    \"room\": {\n      \"name\": \"string\"\n    },\n    \"hostname\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "686e7f89-9b76-4ef2-8a8e-5e6268a69bf6",
+              "name": "Invalid track delete request (for example, no room or track does not exist)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "livekit",
+                    "room",
+                    "track"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "715f4c72-ecab-4d71-894c-87e1e36c9c12",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "livekit",
+                    "room",
+                    "track"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5621fcc3-63d2-4ca9-aef5-3bf67a3a56c9",
+              "name": "Failed to delete track",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "livekit",
+                    "room",
+                    "track"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "9d749fbf-c09b-48a1-97ae-7ad34a3cca70",
+    "name": "Polymath API Service CANBus Livekit API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Polymath API service to interact with a real or simulated polymath-powered robot\n\nContact Support:\n Name: Polymath Support\n Email: api@polymathrobotics.com",
+      "type": "text/plain"
+    }
+  }
+}

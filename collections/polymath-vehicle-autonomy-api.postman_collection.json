@@ -1,0 +1,1411 @@
+{
+  "item": [
+    {
+      "id": "759a4fe6-03a5-4dd5-998c-e8024aa8c47c",
+      "name": "Vehicle Autonomy",
+      "description": {
+        "content": "All endpoints related to interacting with Robot's autonomy operations here",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "190fc92c-df2d-48bf-bb01-71e2295b4e64",
+          "name": "Get the combined Autonomy, Navigation and Vehicle feedback from the Polymath system",
+          "request": {
+            "name": "Get the combined Autonomy, Navigation and Vehicle feedback from the Polymath system",
+            "description": {
+              "content": "Returns combined autonomy, navigation, and vehicle feedback from the Polymath system.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "polymath-feedback"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4ee66123-02f3-4c0a-93c7-45a03dfb245a",
+              "name": "Combined autonomy, navigation, and vehicle feedback.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "polymath-feedback"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"polymath_feedback\": {\n      \"navigation_feedback\": {\n        \"nav2_goal_status\": {\n          \"goal_info\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"status\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"status_text\": \"string\",\n          \"text\": \"string\"\n        },\n        \"total_distance_remaining\": 9363.169795571708,\n        \"target_pose\": {\n          \"header\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"pose\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"final_pose\": {\n          \"header\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"pose\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"current_pose_index\": 8705,\n        \"number_of_poses_remaining\": 4594,\n        \"navigation_time\": {\n          \"sec\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"nanosec\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"estimated_time_remaining\": {\n          \"sec\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"nanosec\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"vehicle_feedback\": {\n        \"state\": \"string\",\n        \"description\": \"string\"\n      },\n      \"current_pose\": {\n        \"header\": {\n          \"stamp\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"frame_id\": \"string\"\n        },\n        \"pose\": {\n          \"position\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"orientation\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"current_command_index\": 2902,\n      \"number_commands_remaining\": 4860,\n      \"timestamp_utc\": {},\n      \"cortex_status\": {\n        \"status\": 7657.812435985711,\n        \"status_text\": \"\",\n        \"description\": \"string\"\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "77842594-77e0-4c70-bf50-558650530d11",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "polymath-feedback"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"message\": \"string\",\n  \"error\": {\n    \"details\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4bc51a0b-47c5-48ca-bed1-4a818c2b7295",
+          "name": "Get global costmap boundary coordinates",
+          "request": {
+            "name": "Get global costmap boundary coordinates",
+            "description": {
+              "content": "Returns the latest latitude/longitude coordinates for the four corners of the global costmap boundary.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "costmap",
+                "boundary"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d7d26f42-d67a-478e-9691-25b7c490e5b0",
+              "name": "Costmap boundary corner coordinates.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "costmap",
+                    "boundary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"bottom_left\": {\n      \"latitude\": 3984.1183290356716,\n      \"longitude\": 3654.5812592510174,\n      \"altitude\": 2980.079620058992\n    },\n    \"bottom_right\": {\n      \"latitude\": 9860.007313061868,\n      \"longitude\": 2544.1312407317196,\n      \"altitude\": 2215.432690112823\n    },\n    \"top_left\": {\n      \"latitude\": 2264.3045401812524,\n      \"longitude\": 7561.604265171189,\n      \"altitude\": 4064.0945471987843\n    },\n    \"top_right\": {\n      \"latitude\": 7647.682572901329,\n      \"longitude\": 3749.6133149865586,\n      \"altitude\": 1166.495463329461\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b1d8a5ab-ee63-43c0-9cff-d03bf78686b7",
+              "name": "Costmap boundary data unavailable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "costmap",
+                    "boundary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"message\": \"string\",\n  \"error\": {\n    \"details\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "31cc9732-7d67-48a1-8a89-aea262d98321",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "costmap",
+                    "boundary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"message\": \"string\",\n  \"error\": {\n    \"details\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5a45a059-2d05-4571-bfab-c7ba94def3bf",
+          "name": "Get the available Navigation Path Options and associated Parameters",
+          "request": {
+            "name": "Get the available Navigation Path Options and associated Parameters",
+            "description": {
+              "content": "Returns available navigation path options and configurable parameters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "navigation-path-options"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "868b870d-9117-4e5b-a878-783fbd07ce56",
+              "name": "Available navigation path options and parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "navigation-path-options"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"data\": [\n    {\n      \"name\": \"string\",\n      \"params\": [\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"params\": [\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8cf92ba3-5f68-43c1-9a31-3b7d7453f7d2",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "navigation-path-options"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"message\": \"string\",\n  \"error\": {\n    \"details\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6ed0ea18-52a5-4cec-91ee-e52d014a16e6",
+          "name": "Get the available motion commands",
+          "request": {
+            "name": "Get the available motion commands",
+            "description": {
+              "content": "Returns available motion commands that can be sent to the Polymath system.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "motion-commands"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fb367d52-1326-4a97-84ca-32ecc8e7e789",
+              "name": "Available motion command names and numeric alternatives.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "motion-commands"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"data\": [\n    {\n      \"motion_command\": \"string\",\n      \"alternative\": 6884\n    },\n    {\n      \"motion_command\": \"string\",\n      \"alternative\": 1316\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "641955dc-56fe-43c7-a997-3b31afc36595",
+          "name": "Get all previously set reference targets",
+          "request": {
+            "name": "Get all previously set reference targets",
+            "description": {
+              "content": "Returns all previously set reference targets.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "reference-targets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fd922b5b-abdc-43da-9c5d-c0bf57313326",
+              "name": "All previously set reference targets.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "reference-targets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"reference_targets\": [\n      {\n        \"pose\": {\n          \"lat\": 2231.7581342322,\n          \"lon\": 4710.318612903495,\n          \"altitude\": 55.44343244956562,\n          \"yaw\": 518.2167261102055\n        },\n        \"target_id\": \"string\",\n        \"timestamp_utc\": \"string\",\n        \"time_validity\": -1,\n        \"recorded_speed_m_s\": 9686.52411583359\n      },\n      {\n        \"pose\": {\n          \"lat\": 3779.4768100522824,\n          \"lon\": 5005.893004244668,\n          \"altitude\": 2646.0113105170326,\n          \"yaw\": 4953.910615326295\n        },\n        \"target_id\": \"string\",\n        \"timestamp_utc\": \"string\",\n        \"time_validity\": -1,\n        \"recorded_speed_m_s\": 605.0809137519964\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8ddc59ed-7542-469d-b631-2dae0acdf368",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "reference-targets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"message\": \"string\",\n  \"error\": {\n    \"details\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e1f8760b-3f5d-4728-9a4c-5cbc6296ba76",
+          "name": "Set the location and details of a reference location or an object",
+          "request": {
+            "name": "Set the location and details of a reference location or an object",
+            "description": {
+              "content": "Sets one or more reference targets for relative navigation. Each target may include optional `time_validity` and `recorded_speed_m_s` metadata. Use `POST /relative-waypoints` to send waypoints relative to these targets.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "reference-targets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reference_targets\": [\n    {\n      \"pose\": {\n        \"lat\": \"<number>\",\n        \"lon\": \"<number>\",\n        \"altitude\": \"<number>\",\n        \"yaw\": \"<number>\"\n      },\n      \"target_id\": \"string\",\n      \"timestamp_utc\": \"<string>\",\n      \"time_validity\": -1,\n      \"recorded_speed_m_s\": \"<number>\"\n    },\n    {\n      \"pose\": {\n        \"lat\": \"<number>\",\n        \"lon\": \"<number>\",\n        \"altitude\": \"<number>\",\n        \"yaw\": \"<number>\"\n      },\n      \"target_id\": \"string\",\n      \"timestamp_utc\": \"<string>\",\n      \"time_validity\": -1,\n      \"recorded_speed_m_s\": \"<number>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6c41ae2b-25a0-463e-ae6b-bcaed652e756",
+              "name": "Sent reference targets and upstream service response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "reference-targets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reference_targets\": [\n    {\n      \"pose\": {\n        \"lat\": \"<number>\",\n        \"lon\": \"<number>\",\n        \"altitude\": \"<number>\",\n        \"yaw\": \"<number>\"\n      },\n      \"target_id\": \"string\",\n      \"timestamp_utc\": \"<string>\",\n      \"time_validity\": -1,\n      \"recorded_speed_m_s\": \"<number>\"\n    },\n    {\n      \"pose\": {\n        \"lat\": \"<number>\",\n        \"lon\": \"<number>\",\n        \"altitude\": \"<number>\",\n        \"yaw\": \"<number>\"\n      },\n      \"target_id\": \"string\",\n      \"timestamp_utc\": \"<string>\",\n      \"time_validity\": -1,\n      \"recorded_speed_m_s\": \"<number>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"sent\": {\n      \"reference_targets\": [\n        {\n          \"pose\": {\n            \"lat\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"lon\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"altitude\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"yaw\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"target_id\": \"string\",\n          \"timestamp_utc\": \"<string>\",\n          \"time_validity\": -1,\n          \"recorded_speed_m_s\": \"<number>\"\n        },\n        {\n          \"pose\": {\n            \"lat\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"lon\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"altitude\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"yaw\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"target_id\": \"string\",\n          \"timestamp_utc\": \"<string>\",\n          \"time_validity\": -1,\n          \"recorded_speed_m_s\": \"<number>\"\n        }\n      ]\n    },\n    \"received\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3384ea74-541c-4836-a1be-4a93a64917e4",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "reference-targets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reference_targets\": [\n    {\n      \"pose\": {\n        \"lat\": \"<number>\",\n        \"lon\": \"<number>\",\n        \"altitude\": \"<number>\",\n        \"yaw\": \"<number>\"\n      },\n      \"target_id\": \"string\",\n      \"timestamp_utc\": \"<string>\",\n      \"time_validity\": -1,\n      \"recorded_speed_m_s\": \"<number>\"\n    },\n    {\n      \"pose\": {\n        \"lat\": \"<number>\",\n        \"lon\": \"<number>\",\n        \"altitude\": \"<number>\",\n        \"yaw\": \"<number>\"\n      },\n      \"target_id\": \"string\",\n      \"timestamp_utc\": \"<string>\",\n      \"time_validity\": -1,\n      \"recorded_speed_m_s\": \"<number>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e8e8a531-93cf-496a-afaf-a78e749c837c",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "reference-targets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reference_targets\": [\n    {\n      \"pose\": {\n        \"lat\": \"<number>\",\n        \"lon\": \"<number>\",\n        \"altitude\": \"<number>\",\n        \"yaw\": \"<number>\"\n      },\n      \"target_id\": \"string\",\n      \"timestamp_utc\": \"<string>\",\n      \"time_validity\": -1,\n      \"recorded_speed_m_s\": \"<number>\"\n    },\n    {\n      \"pose\": {\n        \"lat\": \"<number>\",\n        \"lon\": \"<number>\",\n        \"altitude\": \"<number>\",\n        \"yaw\": \"<number>\"\n      },\n      \"target_id\": \"string\",\n      \"timestamp_utc\": \"<string>\",\n      \"time_validity\": -1,\n      \"recorded_speed_m_s\": \"<number>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"message\": \"string\",\n  \"error\": {\n    \"details\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "df421ef4-9f50-48cc-a7c7-7aea6c3f52a0",
+          "name": "Set a reference target at the current robot location",
+          "request": {
+            "name": "Set a reference target at the current robot location",
+            "description": {
+              "content": "Creates a `previous_location` reference target from the robot's current GPS pose for subsequent relative navigation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "reference-targets",
+                "current-location"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cfd1fe3f-4bc7-49ac-9bd9-b184cbd2ac3d",
+              "name": "Generated current-location reference target and upstream service response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "reference-targets",
+                    "current-location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"sent\": {\n      \"reference_targets\": [\n        {\n          \"pose\": {\n            \"lat\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"lon\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"altitude\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"yaw\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"target_id\": \"string\",\n          \"timestamp_utc\": \"<string>\",\n          \"time_validity\": -1,\n          \"recorded_speed_m_s\": \"<number>\"\n        },\n        {\n          \"pose\": {\n            \"lat\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"lon\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"altitude\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"yaw\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"target_id\": \"string\",\n          \"timestamp_utc\": \"<string>\",\n          \"time_validity\": -1,\n          \"recorded_speed_m_s\": \"<number>\"\n        }\n      ]\n    },\n    \"received\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c4eeba51-5376-4fb5-b6f9-dfa1d0fd4eb8",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "reference-targets",
+                    "current-location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"message\": \"string\",\n  \"error\": {\n    \"details\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "861cd4bd-bc8b-4f0e-9ec3-44d4b4a38001",
+          "name": "Send a set of gps waypoints to the robot",
+          "request": {
+            "name": "Send a set of gps waypoints to the robot",
+            "description": {
+              "content": "Sends GPS waypoints and navigation options to the robot.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "gps-waypoints"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"goals\": [\n    {\n      \"lat\": \"<number>\",\n      \"lon\": \"<number>\",\n      \"timestamp_utc\": \"\",\n      \"yaw\": \"<number>\"\n    },\n    {\n      \"lat\": \"<number>\",\n      \"lon\": \"<number>\",\n      \"timestamp_utc\": \"\",\n      \"yaw\": \"<number>\"\n    }\n  ],\n  \"timestamp_utc\": \"\",\n  \"navigation_options\": {\n    \"path_option\": {\n      \"name\": \"<string>\",\n      \"params\": [\n        {\n          \"key\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"value\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"key\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"value\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    },\n    \"mode\": 0\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6bb0311a-d41a-443b-9e14-43cedd8dba23",
+              "name": "Sent GPS waypoints and upstream service response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "gps-waypoints"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"goals\": [\n    {\n      \"lat\": \"<number>\",\n      \"lon\": \"<number>\",\n      \"timestamp_utc\": \"\",\n      \"yaw\": \"<number>\"\n    },\n    {\n      \"lat\": \"<number>\",\n      \"lon\": \"<number>\",\n      \"timestamp_utc\": \"\",\n      \"yaw\": \"<number>\"\n    }\n  ],\n  \"timestamp_utc\": \"\",\n  \"navigation_options\": {\n    \"path_option\": {\n      \"name\": \"<string>\",\n      \"params\": [\n        {\n          \"key\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"value\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"key\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"value\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    },\n    \"mode\": 0\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"sent\": {\n      \"goals\": [\n        {\n          \"lat\": \"<number>\",\n          \"lon\": \"<number>\",\n          \"timestamp_utc\": \"\",\n          \"yaw\": \"<number>\"\n        },\n        {\n          \"lat\": \"<number>\",\n          \"lon\": \"<number>\",\n          \"timestamp_utc\": \"\",\n          \"yaw\": \"<number>\"\n        }\n      ],\n      \"timestamp_utc\": \"\",\n      \"navigation_options\": {\n        \"path_option\": {\n          \"name\": \"target_follower\",\n          \"params\": [\n            {\n              \"key\": \"speed\",\n              \"value\": \"0.5\"\n            }\n          ]\n        },\n        \"mode\": \"ADD\"\n      }\n    },\n    \"received\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "336780af-0738-431f-80ed-a36ff92357bc",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "gps-waypoints"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"goals\": [\n    {\n      \"lat\": \"<number>\",\n      \"lon\": \"<number>\",\n      \"timestamp_utc\": \"\",\n      \"yaw\": \"<number>\"\n    },\n    {\n      \"lat\": \"<number>\",\n      \"lon\": \"<number>\",\n      \"timestamp_utc\": \"\",\n      \"yaw\": \"<number>\"\n    }\n  ],\n  \"timestamp_utc\": \"\",\n  \"navigation_options\": {\n    \"path_option\": {\n      \"name\": \"<string>\",\n      \"params\": [\n        {\n          \"key\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"value\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"key\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"value\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    },\n    \"mode\": 0\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "090e4a87-a1cd-46ee-af89-be8dedff51ad",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "gps-waypoints"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"goals\": [\n    {\n      \"lat\": \"<number>\",\n      \"lon\": \"<number>\",\n      \"timestamp_utc\": \"\",\n      \"yaw\": \"<number>\"\n    },\n    {\n      \"lat\": \"<number>\",\n      \"lon\": \"<number>\",\n      \"timestamp_utc\": \"\",\n      \"yaw\": \"<number>\"\n    }\n  ],\n  \"timestamp_utc\": \"\",\n  \"navigation_options\": {\n    \"path_option\": {\n      \"name\": \"<string>\",\n      \"params\": [\n        {\n          \"key\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"value\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"key\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"value\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    },\n    \"mode\": 0\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"message\": \"string\",\n  \"error\": {\n    \"details\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f41be967-07c0-4b9d-bbe1-803ea286217c",
+          "name": "Send a set of relative waypoints to the robot",
+          "request": {
+            "name": "Send a set of relative waypoints to the robot",
+            "description": {
+              "content": "Sends relative waypoints and navigation options to the robot.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "relative-waypoints"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"move_to\": [\n    {\n      \"timestamp_utc\": \"\",\n      \"x\": 0,\n      \"y\": 0,\n      \"z\": 0,\n      \"yaw\": 0\n    },\n    {\n      \"timestamp_utc\": \"\",\n      \"x\": 0,\n      \"y\": 0,\n      \"z\": 0,\n      \"yaw\": 0\n    }\n  ],\n  \"relative_to\": \"<string>\",\n  \"timestamp_utc\": \"\",\n  \"navigation_options\": {\n    \"path_option\": {\n      \"name\": \"<string>\",\n      \"params\": [\n        {\n          \"key\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"value\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"key\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"value\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    },\n    \"mode\": 0\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f0d374c3-26a2-4573-999b-ae9bf6c1d3d3",
+              "name": "Sent relative waypoints and upstream service response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "relative-waypoints"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"move_to\": [\n    {\n      \"timestamp_utc\": \"\",\n      \"x\": 0,\n      \"y\": 0,\n      \"z\": 0,\n      \"yaw\": 0\n    },\n    {\n      \"timestamp_utc\": \"\",\n      \"x\": 0,\n      \"y\": 0,\n      \"z\": 0,\n      \"yaw\": 0\n    }\n  ],\n  \"relative_to\": \"<string>\",\n  \"timestamp_utc\": \"\",\n  \"navigation_options\": {\n    \"path_option\": {\n      \"name\": \"<string>\",\n      \"params\": [\n        {\n          \"key\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"value\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"key\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"value\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    },\n    \"mode\": 0\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"sent\": {\n      \"move_to\": [\n        {\n          \"timestamp_utc\": \"\",\n          \"x\": 0,\n          \"y\": 0,\n          \"z\": 0,\n          \"yaw\": 0\n        },\n        {\n          \"timestamp_utc\": \"\",\n          \"x\": 0,\n          \"y\": 0,\n          \"z\": 0,\n          \"yaw\": 0\n        }\n      ],\n      \"relative_to\": \"<string>\",\n      \"timestamp_utc\": \"\",\n      \"navigation_options\": {\n        \"path_option\": {\n          \"name\": \"target_follower\",\n          \"params\": [\n            {\n              \"key\": \"speed\",\n              \"value\": \"0.5\"\n            }\n          ]\n        },\n        \"mode\": \"ADD\"\n      }\n    },\n    \"received\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fce64977-db91-4bba-a739-b41983965da6",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "relative-waypoints"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"move_to\": [\n    {\n      \"timestamp_utc\": \"\",\n      \"x\": 0,\n      \"y\": 0,\n      \"z\": 0,\n      \"yaw\": 0\n    },\n    {\n      \"timestamp_utc\": \"\",\n      \"x\": 0,\n      \"y\": 0,\n      \"z\": 0,\n      \"yaw\": 0\n    }\n  ],\n  \"relative_to\": \"<string>\",\n  \"timestamp_utc\": \"\",\n  \"navigation_options\": {\n    \"path_option\": {\n      \"name\": \"<string>\",\n      \"params\": [\n        {\n          \"key\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"value\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"key\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"value\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    },\n    \"mode\": 0\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "71597a8f-41ef-4b10-a75b-e7332968678a",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "relative-waypoints"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"move_to\": [\n    {\n      \"timestamp_utc\": \"\",\n      \"x\": 0,\n      \"y\": 0,\n      \"z\": 0,\n      \"yaw\": 0\n    },\n    {\n      \"timestamp_utc\": \"\",\n      \"x\": 0,\n      \"y\": 0,\n      \"z\": 0,\n      \"yaw\": 0\n    }\n  ],\n  \"relative_to\": \"<string>\",\n  \"timestamp_utc\": \"\",\n  \"navigation_options\": {\n    \"path_option\": {\n      \"name\": \"<string>\",\n      \"params\": [\n        {\n          \"key\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"value\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"key\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"value\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    },\n    \"mode\": 0\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"message\": \"string\",\n  \"error\": {\n    \"details\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "38dc8d1b-7af5-4993-8bcb-2b329d1ced30",
+          "name": "Send a motion command to the robot to change its current state",
+          "request": {
+            "name": "Send a motion command to the robot to change its current state",
+            "description": {
+              "content": "Sends a motion command to change the robot motion state. Supported commands: `STOP` (0), `PAUSE` (1), and `RESUME` (2).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "motion-command"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"motion_command\": 0,\n  \"mode\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b8ea8858-4d88-4d0f-8c34-fb6799843856",
+              "name": "Motion command execution response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "motion-command"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"motion_command\": 0,\n  \"mode\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"received\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7eeaccd5-df4e-4ae6-8704-fb07b6480a4e",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "motion-command"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"motion_command\": 0,\n  \"mode\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "34bd4c6a-7d54-47c6-9139-fb663cb07354",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "motion-command"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"motion_command\": 0,\n  \"mode\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"message\": \"string\",\n  \"error\": {\n    \"details\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e91bd430-575b-46c2-bed3-650a9a0d624e",
+    "name": "Polymath API Service CANBus Vehicle Autonomy API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Polymath API service to interact with a real or simulated polymath-powered robot\n\nContact Support:\n Name: Polymath Support\n Email: api@polymathrobotics.com",
+      "type": "text/plain"
+    }
+  }
+}
