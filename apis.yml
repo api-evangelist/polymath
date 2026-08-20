@@ -38,6 +38,17 @@ tags:
 - Autonomy
 - Industrial Vehicles
 - Off-Highway
+- Machine-Learning
+- Simulation
+- Teleoperation
+- Automation
+- Artificial Intelligence
+- Unmanned Vehicles
+tags_raw:
+- Robotics
+- Autonomy
+- Industrial Vehicles
+- Off-Highway
 - Machine Learning
 - Simulation
 - Teleoperation
@@ -51,6 +62,8 @@ apis:
   humanURL: https://synapse.docs.polymathrobotics.dev/docs/reference
   baseURL: https://polyglot.polymathrobotics.dev/api
   tags:
+  - CAN Bus
+  tags_raw:
   - CANBus
   properties:
   - type: OpenAPI
@@ -65,6 +78,8 @@ apis:
   humanURL: https://synapse.docs.polymathrobotics.dev/docs/reference
   baseURL: https://polyglot.polymathrobotics.dev/api
   tags:
+  - Filesystem
+  tags_raw:
   - filesystem
   properties:
   - type: OpenAPI
@@ -121,6 +136,8 @@ apis:
   humanURL: https://synapse.docs.polymathrobotics.dev/docs/reference
   baseURL: https://polyglot.polymathrobotics.dev/api
   tags:
+  - ROS
+  tags_raw:
   - ros
   properties:
   - type: OpenAPI
