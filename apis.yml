@@ -74,7 +74,7 @@ apis:
   humanURL: https://synapse.docs.polymathrobotics.dev/docs/reference
   baseURL: https://polyglot.polymathrobotics.dev/api
   tags:
-  - CANBus
+  - CAN Bus
   tags_raw:
   - CANBus
   properties:
@@ -148,7 +148,7 @@ apis:
   humanURL: https://synapse.docs.polymathrobotics.dev/docs/reference
   baseURL: https://polyglot.polymathrobotics.dev/api
   tags:
-  - ros
+  - ROS
   tags_raw:
   - ros
   properties:
