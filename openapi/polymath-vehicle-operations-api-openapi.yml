@@ -1,6 +1,6 @@
-openapi: 3.0.2
+openapi: 3.2.0
 info:
-  title: Polymath API Service CANBus Vehicle Operations API
+  title: Polymath API Service Vehicle Operations API
   description: Polymath API service to interact with a real or simulated polymath-powered robot
   termsOfService: https://www.polymathrobotics.com/legal/terms-of-service
   contact:
@@ -69,74 +69,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    CommandMode:
-      title: CommandMode
-      enum:
-      - 0
-      - 1
-      description: An enumeration.
-    VehicleCommandOptionResponse:
-      title: VehicleCommandOptionResponse
-      required:
-      - status
-      - message
-      - data
-      type: object
-      properties:
-        status:
-          title: Status
-          type: string
-        message:
-          title: Message
-          type: string
-        data:
-          title: Data
-          type: array
-          items:
-            $ref: '#/components/schemas/CortexOption'
-    KeyValuePair:
-      title: KeyValuePair
-      required:
-      - key
-      - value
-      type: object
-      properties:
-        key:
-          title: Key
-          type: string
-        value:
-          title: Value
-          type: string
-    ValidationError:
-      title: ValidationError
-      required:
-      - loc
-      - msg
-      - type
-      type: object
-      properties:
-        loc:
-          title: Location
-          type: array
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-        msg:
-          title: Message
-          type: string
-        type:
-          title: Error Type
-          type: string
-    HTTPValidationError:
-      title: HTTPValidationError
-      type: object
-      properties:
-        detail:
-          title: Detail
-          type: array
-          items:
-            $ref: '#/components/schemas/ValidationError'
     VehicleCommandResponse:
       title: VehicleCommandResponse
       required:
@@ -165,6 +97,57 @@ components:
         received:
           title: Received
           type: object
+    ErrorDetails:
+      title: ErrorDetails
+      required:
+      - details
+      type: object
+      properties:
+        details:
+          title: Details
+          type: string
+    CommandMode:
+      title: CommandMode
+      enum:
+      - 0
+      - 1
+      description: An enumeration.
+    ValidationError:
+      title: ValidationError
+      required:
+      - loc
+      - msg
+      - type
+      type: object
+      properties:
+        loc:
+          title: Location
+          type: array
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+        msg:
+          title: Message
+          type: string
+        type:
+          title: Error Type
+          type: string
+    VehicleCommandAction:
+      title: VehicleCommandAction
+      type: object
+      properties:
+        vehicle_command:
+          title: Vehicle Command
+          allOf:
+          - $ref: '#/components/schemas/CortexOption'
+          description: Vehicle command to execute
+        mode:
+          allOf:
+          - $ref: '#/components/schemas/CommandMode'
+          description: 'Mode of execution of previous and current waypoints. Available options: ''ADD'',''PREEMPT''. ADD or 0: Add a new waypoint to existing queue of waypoints, PREEMPT or 1: Delete the existing queue and adds the new waypoint.'
+          default: 0
+          example: ADD
     ErrorResponse:
       title: ErrorResponse
       required:
@@ -182,29 +165,18 @@ components:
           type: string
         error:
           $ref: '#/components/schemas/ErrorDetails'
-    VehicleCommandAction:
-      title: VehicleCommandAction
-      type: object
-      properties:
-        vehicle_command:
-          title: Vehicle Command
-          allOf:
-          - $ref: '#/components/schemas/CortexOption'
-          description: Vehicle command to execute
-        mode:
-          allOf:
-          - $ref: '#/components/schemas/CommandMode'
-          description: 'Mode of execution of previous and current waypoints. Available options: ''ADD'',''PREEMPT''. ADD or 0: Add a new waypoint to existing queue of waypoints, PREEMPT or 1: Delete the existing queue and adds the new waypoint.'
-          default: 0
-          example: ADD
-    ErrorDetails:
-      title: ErrorDetails
+    KeyValuePair:
+      title: KeyValuePair
       required:
-      - details
+      - key
+      - value
       type: object
       properties:
-        details:
-          title: Details
+        key:
+          title: Key
+          type: string
+        value:
+          title: Value
           type: string
     CortexOption:
       title: CortexOption
@@ -221,6 +193,34 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/KeyValuePair'
+    VehicleCommandOptionResponse:
+      title: VehicleCommandOptionResponse
+      required:
+      - status
+      - message
+      - data
+      type: object
+      properties:
+        status:
+          title: Status
+          type: string
+        message:
+          title: Message
+          type: string
+        data:
+          title: Data
+          type: array
+          items:
+            $ref: '#/components/schemas/CortexOption'
+    HTTPValidationError:
+      title: HTTPValidationError
+      type: object
+      properties:
+        detail:
+          title: Detail
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
   securitySchemes:
     HTTPBearer:
       type: http

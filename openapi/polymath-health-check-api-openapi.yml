@@ -1,6 +1,6 @@
-openapi: 3.0.2
+openapi: 3.2.0
 info:
-  title: Polymath API Service CANBus Health Check API
+  title: Polymath API Service Health Check API
   description: Polymath API service to interact with a real or simulated polymath-powered robot
   termsOfService: https://www.polymathrobotics.com/legal/terms-of-service
   contact:
@@ -66,23 +66,35 @@ paths:
       deprecated: true
 components:
   schemas:
-    ErrorResponse:
-      title: ErrorResponse
+    VersionResponse:
+      title: VersionResponse
+      required:
+      - commit_sha
+      - polymath_core_commit_sha
+      type: object
+      properties:
+        commit_sha:
+          title: Commit Sha
+          type: string
+        polymath_core_commit_sha:
+          title: Polymath Core Commit Sha
+          type: string
+    UUIDResponse:
+      title: UUIDResponse
       required:
       - status
       - message
+      - data
       type: object
       properties:
         status:
           title: Status
-          enum:
-          - error
           type: string
         message:
           title: Message
           type: string
-        error:
-          $ref: '#/components/schemas/ErrorDetails'
+        data:
+          $ref: '#/components/schemas/UUIDData'
     ErrorDetails:
       title: ErrorDetails
       required:
@@ -101,35 +113,23 @@ components:
         uuid:
           title: Uuid
           type: string
-    UUIDResponse:
-      title: UUIDResponse
+    ErrorResponse:
+      title: ErrorResponse
       required:
       - status
       - message
-      - data
       type: object
       properties:
         status:
           title: Status
+          enum:
+          - error
           type: string
         message:
           title: Message
           type: string
-        data:
-          $ref: '#/components/schemas/UUIDData'
-    VersionResponse:
-      title: VersionResponse
-      required:
-      - commit_sha
-      - polymath_core_commit_sha
-      type: object
-      properties:
-        commit_sha:
-          title: Commit Sha
-          type: string
-        polymath_core_commit_sha:
-          title: Polymath Core Commit Sha
-          type: string
+        error:
+          $ref: '#/components/schemas/ErrorDetails'
     HealthStatusResponse:
       title: HealthStatusResponse
       required:

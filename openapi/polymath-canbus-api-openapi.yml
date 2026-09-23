@@ -1,6 +1,6 @@
-openapi: 3.0.2
+openapi: 3.2.0
 info:
-  title: Polymath API Service CANBus API
+  title: Polymath API Service CAN Bus API
   description: Polymath API service to interact with a real or simulated polymath-powered robot
   termsOfService: https://www.polymathrobotics.com/legal/terms-of-service
   contact:
@@ -42,32 +42,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    ErrorDetails:
-      title: ErrorDetails
-      required:
-      - details
-      type: object
-      properties:
-        details:
-          title: Details
-          type: string
-    ErrorResponse:
-      title: ErrorResponse
-      required:
-      - status
-      - message
-      type: object
-      properties:
-        status:
-          title: Status
-          enum:
-          - error
-          type: string
-        message:
-          title: Message
-          type: string
-        error:
-          $ref: '#/components/schemas/ErrorDetails'
     CanInterfaceListResponse:
       title: CanInterfaceListResponse
       required:
@@ -87,6 +61,32 @@ components:
           type: array
           items:
             type: object
+    ErrorResponse:
+      title: ErrorResponse
+      required:
+      - status
+      - message
+      type: object
+      properties:
+        status:
+          title: Status
+          enum:
+          - error
+          type: string
+        message:
+          title: Message
+          type: string
+        error:
+          $ref: '#/components/schemas/ErrorDetails'
+    ErrorDetails:
+      title: ErrorDetails
+      required:
+      - details
+      type: object
+      properties:
+        details:
+          title: Details
+          type: string
   securitySchemes:
     HTTPBearer:
       type: http

@@ -1,6 +1,6 @@
-openapi: 3.0.2
+openapi: 3.2.0
 info:
-  title: Polymath API Service CANBus Teleop Control API
+  title: Polymath API Service Teleop Control API
   description: Polymath API service to interact with a real or simulated polymath-powered robot
   termsOfService: https://www.polymathrobotics.com/legal/terms-of-service
   contact:
@@ -171,6 +171,25 @@ paths:
                 $ref: '#/components/schemas/ControlResponse'
 components:
   schemas:
+    TransferLeaseRequest:
+      title: TransferLeaseRequest
+      required:
+      - to
+      type: object
+      properties:
+        to:
+          title: To
+          type: string
+          description: User ID to transfer lease to
+    ErrorDetails:
+      title: ErrorDetails
+      required:
+      - details
+      type: object
+      properties:
+        details:
+          title: Details
+          type: string
     ValidationError:
       title: ValidationError
       required:
@@ -192,15 +211,6 @@ components:
         type:
           title: Error Type
           type: string
-    HTTPValidationError:
-      title: HTTPValidationError
-      type: object
-      properties:
-        detail:
-          title: Detail
-          type: array
-          items:
-            $ref: '#/components/schemas/ValidationError'
     ErrorResponse:
       title: ErrorResponse
       required:
@@ -218,15 +228,17 @@ components:
           type: string
         error:
           $ref: '#/components/schemas/ErrorDetails'
-    ErrorDetails:
-      title: ErrorDetails
-      required:
-      - details
+    ControlLease:
+      title: ControlLease
       type: object
       properties:
-        details:
-          title: Details
+        holder_id:
+          title: Holder Id
           type: string
+        expires_at:
+          title: Expires At
+          type: string
+          format: date-time
     ControlResponse:
       title: ControlResponse
       required:
@@ -251,27 +263,15 @@ components:
           - $ref: '#/components/schemas/ControlLease'
           description: Current lease data
       description: Model for successful responses in the control API
-    TransferLeaseRequest:
-      title: TransferLeaseRequest
-      required:
-      - to
+    HTTPValidationError:
+      title: HTTPValidationError
       type: object
       properties:
-        to:
-          title: To
-          type: string
-          description: User ID to transfer lease to
-    ControlLease:
-      title: ControlLease
-      type: object
-      properties:
-        holder_id:
-          title: Holder Id
-          type: string
-        expires_at:
-          title: Expires At
-          type: string
-          format: date-time
+        detail:
+          title: Detail
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
   securitySchemes:
     HTTPBearer:
       type: http
