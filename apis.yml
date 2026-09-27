@@ -1,15 +1,19 @@
 aid: polymath
 deliveryModel:
   model: saas
-  open_source: false
+  license_evidence:
+    not_product:
+    - polymathrobotics/caladan_examples
+  open_source: unknown
   commercial: true
-  callable_host: true
+  callable_host: false
   label: Hosted service · you call their endpoint
-  confidence: high
+  confidence: low
   source:
   - openapi
   - pricing
-  generated: '2026-08-28'
+  - repository-not-product
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: unknown
@@ -50,7 +54,7 @@ tags:
 - Autonomy
 - Industrial Vehicles
 - Off-Highway
-- Machine-Learning
+- Machine Learning
 - Simulation
 - Teleoperation
 - Automation
@@ -67,6 +71,7 @@ tags_raw:
 - Automation
 - Artificial Intelligence
 - Unmanned Vehicles
+- Machine-Learning
 apis:
 - aid: polymath:polymath-canbus-api
   name: Polymath Robotics CANBus API
@@ -85,7 +90,7 @@ apis:
   - type: DataModel
     url: data-model/polymath-data-model.yml
 - aid: polymath:polymath-filesystem-api
-  name: Polymath Robotics filesystem API
+  name: Polymath Robotics Filesystem API
   description: The filesystem API from Polymath Robotics — 3 operation(s) for filesystem.
   humanURL: https://synapse.docs.polymathrobotics.dev/docs/reference
   baseURL: https://polyglot.polymathrobotics.dev/api
@@ -143,7 +148,7 @@ apis:
   - type: DataModel
     url: data-model/polymath-data-model.yml
 - aid: polymath:polymath-ros-api
-  name: Polymath Robotics ros API
+  name: Polymath Robotics Ros API
   description: The ros API from Polymath Robotics — 1 operation(s) for ros.
   humanURL: https://synapse.docs.polymathrobotics.dev/docs/reference
   baseURL: https://polyglot.polymathrobotics.dev/api
@@ -159,7 +164,7 @@ apis:
   - type: DataModel
     url: data-model/polymath-data-model.yml
 - aid: polymath:polymath-systemd-api
-  name: Polymath Robotics systemd API
+  name: Polymath Robotics Systemd API
   description: The systemd API from Polymath Robotics — 1 operation(s) for systemd.
   humanURL: https://synapse.docs.polymathrobotics.dev/docs/reference
   baseURL: https://polyglot.polymathrobotics.dev/api

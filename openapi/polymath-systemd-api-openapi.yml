@@ -61,7 +61,7 @@ paths:
 
 
         E.g. to list user services, send a GET request to: `/v2/systemd/list/user`'
-      operationId: proxy_systemd_request
+      operationId: postV2SystemdByPath
       parameters:
       - required: true
         schema:
@@ -81,6 +81,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
+      x-operation-id-source: normalized
+      x-operation-id-original: proxy_systemd_request
 components:
   schemas:
     ValidationError:

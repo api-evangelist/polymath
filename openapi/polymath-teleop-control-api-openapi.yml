@@ -171,25 +171,6 @@ paths:
                 $ref: '#/components/schemas/ControlResponse'
 components:
   schemas:
-    TransferLeaseRequest:
-      title: TransferLeaseRequest
-      required:
-      - to
-      type: object
-      properties:
-        to:
-          title: To
-          type: string
-          description: User ID to transfer lease to
-    ErrorDetails:
-      title: ErrorDetails
-      required:
-      - details
-      type: object
-      properties:
-        details:
-          title: Details
-          type: string
     ValidationError:
       title: ValidationError
       required:
@@ -211,34 +192,6 @@ components:
         type:
           title: Error Type
           type: string
-    ErrorResponse:
-      title: ErrorResponse
-      required:
-      - status
-      - message
-      type: object
-      properties:
-        status:
-          title: Status
-          enum:
-          - error
-          type: string
-        message:
-          title: Message
-          type: string
-        error:
-          $ref: '#/components/schemas/ErrorDetails'
-    ControlLease:
-      title: ControlLease
-      type: object
-      properties:
-        holder_id:
-          title: Holder Id
-          type: string
-        expires_at:
-          title: Expires At
-          type: string
-          format: date-time
     ControlResponse:
       title: ControlResponse
       required:
@@ -263,6 +216,53 @@ components:
           - $ref: '#/components/schemas/ControlLease'
           description: Current lease data
       description: Model for successful responses in the control API
+    TransferLeaseRequest:
+      title: TransferLeaseRequest
+      required:
+      - to
+      type: object
+      properties:
+        to:
+          title: To
+          type: string
+          description: User ID to transfer lease to
+    ControlLease:
+      title: ControlLease
+      type: object
+      properties:
+        holder_id:
+          title: Holder Id
+          type: string
+        expires_at:
+          title: Expires At
+          type: string
+          format: date-time
+    ErrorDetails:
+      title: ErrorDetails
+      required:
+      - details
+      type: object
+      properties:
+        details:
+          title: Details
+          type: string
+    ErrorResponse:
+      title: ErrorResponse
+      required:
+      - status
+      - message
+      type: object
+      properties:
+        status:
+          title: Status
+          enum:
+          - error
+          type: string
+        message:
+          title: Message
+          type: string
+        error:
+          $ref: '#/components/schemas/ErrorDetails'
     HTTPValidationError:
       title: HTTPValidationError
       type: object

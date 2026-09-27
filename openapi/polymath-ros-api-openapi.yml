@@ -45,7 +45,7 @@ paths:
       - ros
       summary: Proxy Systemd Request
       description: Reverse proxy for RESTful ROS2 API requests. Please refer to the API documentation for details on available endpoints.
-      operationId: proxy_systemd_request
+      operationId: postV2RosByPath
       parameters:
       - required: true
         schema:
@@ -65,6 +65,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
+      x-operation-id-source: normalized
+      x-operation-id-original: proxy_systemd_request
 components:
   schemas:
     ValidationError:

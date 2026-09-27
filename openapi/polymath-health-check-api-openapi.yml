@@ -95,6 +95,15 @@ components:
           type: string
         data:
           $ref: '#/components/schemas/UUIDData'
+    HealthStatusResponse:
+      title: HealthStatusResponse
+      required:
+      - status
+      type: object
+      properties:
+        status:
+          title: Status
+          type: string
     ErrorDetails:
       title: ErrorDetails
       required:
@@ -103,15 +112,6 @@ components:
       properties:
         details:
           title: Details
-          type: string
-    UUIDData:
-      title: UUIDData
-      required:
-      - uuid
-      type: object
-      properties:
-        uuid:
-          title: Uuid
           type: string
     ErrorResponse:
       title: ErrorResponse
@@ -130,14 +130,14 @@ components:
           type: string
         error:
           $ref: '#/components/schemas/ErrorDetails'
-    HealthStatusResponse:
-      title: HealthStatusResponse
+    UUIDData:
+      title: UUIDData
       required:
-      - status
+      - uuid
       type: object
       properties:
-        status:
-          title: Status
+        uuid:
+          title: Uuid
           type: string
   securitySchemes:
     HTTPBearer:
