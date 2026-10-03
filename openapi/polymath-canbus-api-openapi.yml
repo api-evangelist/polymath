@@ -42,25 +42,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    CanInterfaceListResponse:
-      title: CanInterfaceListResponse
-      required:
-      - status
-      - message
-      - data
-      type: object
-      properties:
-        status:
-          title: Status
-          type: string
-        message:
-          title: Message
-          type: string
-        data:
-          title: Data
-          type: array
-          items:
-            type: object
     ErrorResponse:
       title: ErrorResponse
       required:
@@ -87,6 +68,25 @@ components:
         details:
           title: Details
           type: string
+    CanInterfaceListResponse:
+      title: CanInterfaceListResponse
+      required:
+      - status
+      - message
+      - data
+      type: object
+      properties:
+        status:
+          title: Status
+          type: string
+        message:
+          title: Message
+          type: string
+        data:
+          title: Data
+          type: array
+          items:
+            type: object
   securitySchemes:
     HTTPBearer:
       type: http
