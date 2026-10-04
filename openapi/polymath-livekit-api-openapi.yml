@@ -269,112 +269,16 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    MediaTypeEnum:
-      title: MediaTypeEnum
-      enum:
-      - media_device
-      - rtsp
-      - ros
-      - gstream
-      type: string
-      description: An enumeration.
-    LivekitConfigResponse:
-      title: LivekitConfigResponse
-      type: object
-      properties:
-        room_name:
-          title: Room Name
-          type: string
-        bridge_identity:
-          title: Bridge Identity
-          type: string
-        livekit_url:
-          title: Livekit Url
-          type: string
-      description: Response model for environment-backed LiveKit discovery configuration.
-    LivekitTokenResponse:
-      title: LivekitTokenResponse
+    LivekitRoomInfo:
+      title: LivekitRoomInfo
       required:
-      - token
+      - name
       type: object
       properties:
-        token:
-          title: Token
+        name:
+          title: Name
           type: string
-      description: Response model for LiveKit token generation.
-    HTTPExceptionResponse:
-      title: HTTPExceptionResponse
-      required:
-      - detail
-      type: object
-      properties:
-        detail:
-          title: Detail
-          type: string
-      description: Response model for HTTPException errors.
-    CodecEnum:
-      title: CodecEnum
-      enum:
-      - VP8
-      - H264
-      - AV1
-      - VP9
-      type: string
-      description: An enumeration.
-    LivekitRoomDetails:
-      title: LivekitRoomDetails
-      type: object
-      properties:
-        room:
-          $ref: '#/components/schemas/LivekitRoomInfo'
-        hostname:
-          title: Hostname
-          type: string
-        tracks:
-          title: Tracks
-          type: array
-          items:
-            $ref: '#/components/schemas/LivekitTrack'
-          default: []
-      description: Details about the current LiveKit room state.
-    Metric:
-      title: Metric
-      required:
-      - p50
-      - p95
-      - p99
-      type: object
-      properties:
-        p50:
-          title: P50
-          type: number
-        p95:
-          title: P95
-          type: number
-        p99:
-          title: P99
-          type: number
-    ValidationError:
-      title: ValidationError
-      required:
-      - loc
-      - msg
-      - type
-      type: object
-      properties:
-        loc:
-          title: Location
-          type: array
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-        msg:
-          title: Message
-          type: string
-        type:
-          title: Error Type
-          type: string
+      description: Information about a connected LiveKit room.
     HTTPValidationError:
       title: HTTPValidationError
       type: object
@@ -384,6 +288,35 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ValidationError'
+    MediaTypeEnum:
+      title: MediaTypeEnum
+      enum:
+      - media_device
+      - rtsp
+      - ros
+      - gstream
+      type: string
+      description: An enumeration.
+    LivekitTrackStats:
+      title: LivekitTrackStats
+      type: object
+      properties:
+        timestamp:
+          title: Timestamp
+          type: number
+          default: 0.0
+        fps:
+          title: Fps
+          allOf:
+          - $ref: '#/components/schemas/Metric'
+          default:
+            p50: 0.0
+            p95: 0.0
+            p99: 0.0
+        size_bytes:
+          title: Size Bytes
+          type: integer
+          default: 0
     LivekitRoomResponse:
       title: LivekitRoomResponse
       required:
@@ -401,16 +334,16 @@ components:
         room:
           $ref: '#/components/schemas/LivekitRoomDetails'
       description: Response model for LiveKit room operations.
-    LivekitRoomInfo:
-      title: LivekitRoomInfo
+    LivekitTokenResponse:
+      title: LivekitTokenResponse
       required:
-      - name
+      - token
       type: object
       properties:
-        name:
-          title: Name
+        token:
+          title: Token
           type: string
-      description: Information about a connected LiveKit room.
+      description: Response model for LiveKit token generation.
     LivekitTrack:
       title: LivekitTrack
       required:
@@ -454,26 +387,93 @@ components:
           title: Max Bitrate Kbps
           type: integer
       description: Track information for API responses, including configuration and runtime data.
-    LivekitTrackStats:
-      title: LivekitTrackStats
+    HTTPExceptionResponse:
+      title: HTTPExceptionResponse
+      required:
+      - detail
       type: object
       properties:
-        timestamp:
-          title: Timestamp
+        detail:
+          title: Detail
+          type: string
+      description: Response model for HTTPException errors.
+    LivekitConfigResponse:
+      title: LivekitConfigResponse
+      type: object
+      properties:
+        room_name:
+          title: Room Name
+          type: string
+        bridge_identity:
+          title: Bridge Identity
+          type: string
+        livekit_url:
+          title: Livekit Url
+          type: string
+      description: Response model for environment-backed LiveKit discovery configuration.
+    ValidationError:
+      title: ValidationError
+      required:
+      - loc
+      - msg
+      - type
+      type: object
+      properties:
+        loc:
+          title: Location
+          type: array
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+        msg:
+          title: Message
+          type: string
+        type:
+          title: Error Type
+          type: string
+    LivekitRoomDetails:
+      title: LivekitRoomDetails
+      type: object
+      properties:
+        room:
+          $ref: '#/components/schemas/LivekitRoomInfo'
+        hostname:
+          title: Hostname
+          type: string
+        tracks:
+          title: Tracks
+          type: array
+          items:
+            $ref: '#/components/schemas/LivekitTrack'
+          default: []
+      description: Details about the current LiveKit room state.
+    CodecEnum:
+      title: CodecEnum
+      enum:
+      - VP8
+      - H264
+      - AV1
+      - VP9
+      type: string
+      description: An enumeration.
+    Metric:
+      title: Metric
+      required:
+      - p50
+      - p95
+      - p99
+      type: object
+      properties:
+        p50:
+          title: P50
           type: number
-          default: 0.0
-        fps:
-          title: Fps
-          allOf:
-          - $ref: '#/components/schemas/Metric'
-          default:
-            p50: 0.0
-            p95: 0.0
-            p99: 0.0
-        size_bytes:
-          title: Size Bytes
-          type: integer
-          default: 0
+        p95:
+          title: P95
+          type: number
+        p99:
+          title: P99
+          type: number
   securitySchemes:
     HTTPBearer:
       type: http

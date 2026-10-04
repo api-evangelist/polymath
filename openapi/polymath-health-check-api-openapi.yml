@@ -66,6 +66,15 @@ paths:
       deprecated: true
 components:
   schemas:
+    ErrorDetails:
+      title: ErrorDetails
+      required:
+      - details
+      type: object
+      properties:
+        details:
+          title: Details
+          type: string
     UUIDResponse:
       title: UUIDResponse
       required:
@@ -100,6 +109,19 @@ components:
         status:
           title: Status
           type: string
+    VersionResponse:
+      title: VersionResponse
+      required:
+      - commit_sha
+      - polymath_core_commit_sha
+      type: object
+      properties:
+        commit_sha:
+          title: Commit Sha
+          type: string
+        polymath_core_commit_sha:
+          title: Polymath Core Commit Sha
+          type: string
     ErrorResponse:
       title: ErrorResponse
       required:
@@ -117,28 +139,6 @@ components:
           type: string
         error:
           $ref: '#/components/schemas/ErrorDetails'
-    VersionResponse:
-      title: VersionResponse
-      required:
-      - commit_sha
-      - polymath_core_commit_sha
-      type: object
-      properties:
-        commit_sha:
-          title: Commit Sha
-          type: string
-        polymath_core_commit_sha:
-          title: Polymath Core Commit Sha
-          type: string
-    ErrorDetails:
-      title: ErrorDetails
-      required:
-      - details
-      type: object
-      properties:
-        details:
-          title: Details
-          type: string
   securitySchemes:
     HTTPBearer:
       type: http

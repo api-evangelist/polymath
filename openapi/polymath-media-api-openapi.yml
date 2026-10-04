@@ -35,15 +35,6 @@ paths:
                   - $ref: '#/components/schemas/BaseStream'
 components:
   schemas:
-    MediaTypeEnum:
-      title: MediaTypeEnum
-      enum:
-      - media_device
-      - rtsp
-      - ros
-      - gstream
-      type: string
-      description: An enumeration.
     BaseStream:
       title: BaseStream
       required:
@@ -55,6 +46,15 @@ components:
         data:
           title: Data
       description: "Abstract base class for generic types.\n\nOn Python 3.12 and newer, generic classes implicitly inherit from\nGeneric when they declare a parameter list after the class's name::\n\n    class Mapping[KT, VT]:\n        def __getitem__(self, key: KT) -> VT:\n            ...\n        # Etc.\n\nOn older versions of Python, however, generic classes have to\nexplicitly inherit from Generic.\n\nAfter a class has been declared to be generic, it can then be used as\nfollows::\n\n    def lookup_name[KT, VT](mapping: Mapping[KT, VT], key: KT, default: VT) -> VT:\n        try:\n            return mapping[key]\n        except KeyError:\n            return default"
+    MediaTypeEnum:
+      title: MediaTypeEnum
+      enum:
+      - media_device
+      - rtsp
+      - ros
+      - gstream
+      type: string
+      description: An enumeration.
   securitySchemes:
     HTTPBearer:
       type: http

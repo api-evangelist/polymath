@@ -42,32 +42,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    ErrorResponse:
-      title: ErrorResponse
-      required:
-      - status
-      - message
-      type: object
-      properties:
-        status:
-          title: Status
-          enum:
-          - error
-          type: string
-        message:
-          title: Message
-          type: string
-        error:
-          $ref: '#/components/schemas/ErrorDetails'
-    ErrorDetails:
-      title: ErrorDetails
-      required:
-      - details
-      type: object
-      properties:
-        details:
-          title: Details
-          type: string
     CanInterfaceListResponse:
       title: CanInterfaceListResponse
       required:
@@ -87,6 +61,32 @@ components:
           type: array
           items:
             type: object
+    ErrorDetails:
+      title: ErrorDetails
+      required:
+      - details
+      type: object
+      properties:
+        details:
+          title: Details
+          type: string
+    ErrorResponse:
+      title: ErrorResponse
+      required:
+      - status
+      - message
+      type: object
+      properties:
+        status:
+          title: Status
+          enum:
+          - error
+          type: string
+        message:
+          title: Message
+          type: string
+        error:
+          $ref: '#/components/schemas/ErrorDetails'
   securitySchemes:
     HTTPBearer:
       type: http

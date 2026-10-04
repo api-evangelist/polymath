@@ -69,6 +69,43 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
+    VehicleCommandAction:
+      title: VehicleCommandAction
+      type: object
+      properties:
+        vehicle_command:
+          title: Vehicle Command
+          allOf:
+          - $ref: '#/components/schemas/CortexOption'
+          description: Vehicle command to execute
+        mode:
+          allOf:
+          - $ref: '#/components/schemas/CommandMode'
+          description: 'Mode of execution of previous and current waypoints. Available options: ''ADD'',''PREEMPT''. ADD or 0: Add a new waypoint to existing queue of waypoints, PREEMPT or 1: Delete the existing queue and adds the new waypoint.'
+          default: 0
+          example: ADD
+    HTTPValidationError:
+      title: HTTPValidationError
+      type: object
+      properties:
+        detail:
+          title: Detail
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+    KeyValuePair:
+      title: KeyValuePair
+      required:
+      - key
+      - value
+      type: object
+      properties:
+        key:
+          title: Key
+          type: string
+        value:
+          title: Value
+          type: string
     VehicleCommandOptionResponse:
       title: VehicleCommandOptionResponse
       required:
@@ -88,6 +125,31 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CortexOption'
+    VehicleCommandResponse:
+      title: VehicleCommandResponse
+      required:
+      - status
+      - message
+      - data
+      type: object
+      properties:
+        status:
+          title: Status
+          type: string
+        message:
+          title: Message
+          type: string
+        data:
+          $ref: '#/components/schemas/VehicleCommandData'
+    ErrorDetails:
+      title: ErrorDetails
+      required:
+      - details
+      type: object
+      properties:
+        details:
+          title: Details
+          type: string
     CommandMode:
       title: CommandMode
       enum:
@@ -115,22 +177,6 @@ components:
         type:
           title: Error Type
           type: string
-    VehicleCommandResponse:
-      title: VehicleCommandResponse
-      required:
-      - status
-      - message
-      - data
-      type: object
-      properties:
-        status:
-          title: Status
-          type: string
-        message:
-          title: Message
-          type: string
-        data:
-          $ref: '#/components/schemas/VehicleCommandData'
     CortexOption:
       title: CortexOption
       required:
@@ -158,43 +204,6 @@ components:
         received:
           title: Received
           type: object
-    HTTPValidationError:
-      title: HTTPValidationError
-      type: object
-      properties:
-        detail:
-          title: Detail
-          type: array
-          items:
-            $ref: '#/components/schemas/ValidationError'
-    KeyValuePair:
-      title: KeyValuePair
-      required:
-      - key
-      - value
-      type: object
-      properties:
-        key:
-          title: Key
-          type: string
-        value:
-          title: Value
-          type: string
-    VehicleCommandAction:
-      title: VehicleCommandAction
-      type: object
-      properties:
-        vehicle_command:
-          title: Vehicle Command
-          allOf:
-          - $ref: '#/components/schemas/CortexOption'
-          description: Vehicle command to execute
-        mode:
-          allOf:
-          - $ref: '#/components/schemas/CommandMode'
-          description: 'Mode of execution of previous and current waypoints. Available options: ''ADD'',''PREEMPT''. ADD or 0: Add a new waypoint to existing queue of waypoints, PREEMPT or 1: Delete the existing queue and adds the new waypoint.'
-          default: 0
-          example: ADD
     ErrorResponse:
       title: ErrorResponse
       required:
@@ -212,15 +221,6 @@ components:
           type: string
         error:
           $ref: '#/components/schemas/ErrorDetails'
-    ErrorDetails:
-      title: ErrorDetails
-      required:
-      - details
-      type: object
-      properties:
-        details:
-          title: Details
-          type: string
   securitySchemes:
     HTTPBearer:
       type: http
