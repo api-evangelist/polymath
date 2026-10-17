@@ -69,6 +69,27 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
+    VehicleCommandData:
+      title: VehicleCommandData
+      required:
+      - sent
+      - received
+      type: object
+      properties:
+        sent:
+          $ref: '#/components/schemas/VehicleCommandAction'
+        received:
+          title: Received
+          type: object
+    HTTPValidationError:
+      title: HTTPValidationError
+      type: object
+      properties:
+        detail:
+          title: Detail
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
     VehicleCommandAction:
       title: VehicleCommandAction
       type: object
@@ -84,28 +105,6 @@ components:
           description: 'Mode of execution of previous and current waypoints. Available options: ''ADD'',''PREEMPT''. ADD or 0: Add a new waypoint to existing queue of waypoints, PREEMPT or 1: Delete the existing queue and adds the new waypoint.'
           default: 0
           example: ADD
-    HTTPValidationError:
-      title: HTTPValidationError
-      type: object
-      properties:
-        detail:
-          title: Detail
-          type: array
-          items:
-            $ref: '#/components/schemas/ValidationError'
-    KeyValuePair:
-      title: KeyValuePair
-      required:
-      - key
-      - value
-      type: object
-      properties:
-        key:
-          title: Key
-          type: string
-        value:
-          title: Value
-          type: string
     VehicleCommandOptionResponse:
       title: VehicleCommandOptionResponse
       required:
@@ -125,37 +124,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CortexOption'
-    VehicleCommandResponse:
-      title: VehicleCommandResponse
-      required:
-      - status
-      - message
-      - data
-      type: object
-      properties:
-        status:
-          title: Status
-          type: string
-        message:
-          title: Message
-          type: string
-        data:
-          $ref: '#/components/schemas/VehicleCommandData'
-    ErrorDetails:
-      title: ErrorDetails
-      required:
-      - details
-      type: object
-      properties:
-        details:
-          title: Details
-          type: string
-    CommandMode:
-      title: CommandMode
-      enum:
-      - 0
-      - 1
-      description: An enumeration.
     ValidationError:
       title: ValidationError
       required:
@@ -177,33 +145,12 @@ components:
         type:
           title: Error Type
           type: string
-    CortexOption:
-      title: CortexOption
-      required:
-      - name
-      - params
-      type: object
-      properties:
-        name:
-          title: Name
-          type: string
-        params:
-          title: Params
-          type: array
-          items:
-            $ref: '#/components/schemas/KeyValuePair'
-    VehicleCommandData:
-      title: VehicleCommandData
-      required:
-      - sent
-      - received
-      type: object
-      properties:
-        sent:
-          $ref: '#/components/schemas/VehicleCommandAction'
-        received:
-          title: Received
-          type: object
+    CommandMode:
+      title: CommandMode
+      enum:
+      - 0
+      - 1
+      description: An enumeration.
     ErrorResponse:
       title: ErrorResponse
       required:
@@ -221,6 +168,59 @@ components:
           type: string
         error:
           $ref: '#/components/schemas/ErrorDetails'
+    VehicleCommandResponse:
+      title: VehicleCommandResponse
+      required:
+      - status
+      - message
+      - data
+      type: object
+      properties:
+        status:
+          title: Status
+          type: string
+        message:
+          title: Message
+          type: string
+        data:
+          $ref: '#/components/schemas/VehicleCommandData'
+    KeyValuePair:
+      title: KeyValuePair
+      required:
+      - key
+      - value
+      type: object
+      properties:
+        key:
+          title: Key
+          type: string
+        value:
+          title: Value
+          type: string
+    CortexOption:
+      title: CortexOption
+      required:
+      - name
+      - params
+      type: object
+      properties:
+        name:
+          title: Name
+          type: string
+        params:
+          title: Params
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValuePair'
+    ErrorDetails:
+      title: ErrorDetails
+      required:
+      - details
+      type: object
+      properties:
+        details:
+          title: Details
+          type: string
   securitySchemes:
     HTTPBearer:
       type: http

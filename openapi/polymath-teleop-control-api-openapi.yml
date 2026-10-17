@@ -171,6 +171,64 @@ paths:
                 $ref: '#/components/schemas/ControlResponse'
 components:
   schemas:
+    HTTPValidationError:
+      title: HTTPValidationError
+      type: object
+      properties:
+        detail:
+          title: Detail
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+    ValidationError:
+      title: ValidationError
+      required:
+      - loc
+      - msg
+      - type
+      type: object
+      properties:
+        loc:
+          title: Location
+          type: array
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+        msg:
+          title: Message
+          type: string
+        type:
+          title: Error Type
+          type: string
+    ControlLease:
+      title: ControlLease
+      type: object
+      properties:
+        holder_id:
+          title: Holder Id
+          type: string
+        expires_at:
+          title: Expires At
+          type: string
+          format: date-time
+    ErrorResponse:
+      title: ErrorResponse
+      required:
+      - status
+      - message
+      type: object
+      properties:
+        status:
+          title: Status
+          enum:
+          - error
+          type: string
+        message:
+          title: Message
+          type: string
+        error:
+          $ref: '#/components/schemas/ErrorDetails'
     ControlResponse:
       title: ControlResponse
       required:
@@ -195,15 +253,6 @@ components:
           - $ref: '#/components/schemas/ControlLease'
           description: Current lease data
       description: Model for successful responses in the control API
-    HTTPValidationError:
-      title: HTTPValidationError
-      type: object
-      properties:
-        detail:
-          title: Detail
-          type: array
-          items:
-            $ref: '#/components/schemas/ValidationError'
     TransferLeaseRequest:
       title: TransferLeaseRequest
       required:
@@ -223,55 +272,6 @@ components:
         details:
           title: Details
           type: string
-    ControlLease:
-      title: ControlLease
-      type: object
-      properties:
-        holder_id:
-          title: Holder Id
-          type: string
-        expires_at:
-          title: Expires At
-          type: string
-          format: date-time
-    ValidationError:
-      title: ValidationError
-      required:
-      - loc
-      - msg
-      - type
-      type: object
-      properties:
-        loc:
-          title: Location
-          type: array
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-        msg:
-          title: Message
-          type: string
-        type:
-          title: Error Type
-          type: string
-    ErrorResponse:
-      title: ErrorResponse
-      required:
-      - status
-      - message
-      type: object
-      properties:
-        status:
-          title: Status
-          enum:
-          - error
-          type: string
-        message:
-          title: Message
-          type: string
-        error:
-          $ref: '#/components/schemas/ErrorDetails'
   securitySchemes:
     HTTPBearer:
       type: http

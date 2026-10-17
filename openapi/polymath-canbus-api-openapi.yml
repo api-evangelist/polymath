@@ -42,6 +42,15 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    ErrorDetails:
+      title: ErrorDetails
+      required:
+      - details
+      type: object
+      properties:
+        details:
+          title: Details
+          type: string
     CanInterfaceListResponse:
       title: CanInterfaceListResponse
       required:
@@ -61,15 +70,6 @@ components:
           type: array
           items:
             type: object
-    ErrorDetails:
-      title: ErrorDetails
-      required:
-      - details
-      type: object
-      properties:
-        details:
-          title: Details
-          type: string
     ErrorResponse:
       title: ErrorResponse
       required:
