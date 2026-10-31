@@ -1,4 +1,4 @@
-# Polymath
+# Polymath Robotics
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,6 +64,133 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Polymath is a company surfaced as a portfolio company of y-combinator and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+Polymath Robotics builds general autonomy and safety software for off-highway and industrial vehicles such as tractors, loaders, dozers, and mining trucks. Its Synapse REST API lets developers command a real or simulated Polymath-powered vehicle: sending GPS and relative waypoints, issuing motion and vehicle commands, reading combined autonomy, navigation, and vehicle feedback, managing exclusive teleoperation control leases, and streaming media over LiveKit. Caladan, its browser-based simulation environment, lets teams build and test autonomous behaviors in Python without ROS, Gazebo, or Linux before deploying to physical machines. Founded in 2021 (YC S22), San Francisco.
 
-Backed by: y-combinator
+**Areas:** Robotics · Autonomy · Industrial Vehicles · Off-Highway · Machine Learning · Simulation · Teleoperation · Automation · Artificial Intelligence · Unmanned Vehicles
+
+## Polymath Robotics on APIs.io
+
+Everything profiled for Polymath Robotics is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/polymath/](https://apis.io/providers/polymath/)** — or go straight to one of the APIs or properties below.
+
+### APIs (10)
+
+- [Polymath Robotics CANBus API](https://apis.io/apis/polymath/polymath-canbus-api/) — The CANBus API from Polymath Robotics — 1 operation(s) for canbus.
+- [Polymath Robotics Filesystem API](https://apis.io/apis/polymath/polymath-filesystem-api/) — The filesystem API from Polymath Robotics — 3 operation(s) for filesystem.
+- [Polymath Robotics Health Check API](https://apis.io/apis/polymath/polymath-health-check-api/) — Contains UUID endpoint that can be used to health check the robot
+- [Polymath Robotics Livekit API](https://apis.io/apis/polymath/polymath-livekit-api/) — The Livekit API from Polymath Robotics — 4 operation(s) for livekit.
+- [Polymath Robotics Media API](https://apis.io/apis/polymath/polymath-media-api/) — All endpoints related to interacting with Robot's media resources
+- [Polymath Robotics Ros API](https://apis.io/apis/polymath/polymath-ros-api/) — The ros API from Polymath Robotics — 1 operation(s) for ros.
+- [Polymath Robotics Systemd API](https://apis.io/apis/polymath/polymath-systemd-api/) — The systemd API from Polymath Robotics — 1 operation(s) for systemd.
+- [Polymath Robotics Teleop Control API](https://apis.io/apis/polymath/polymath-teleop-control-api/) — Endpoints for managing control leases
+- [Polymath Robotics Vehicle Autonomy API](https://apis.io/apis/polymath/polymath-vehicle-autonomy-api/) — All endpoints related to interacting with Robot's autonomy operations here
+- [Polymath Robotics Vehicle Operations API](https://apis.io/apis/polymath/polymath-vehicle-operations-api/) — All endpoints related to interacting with Robot's vehicle operations here
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [polymath-synapse](https://apis.io/servers/polymath/polymath-synapse/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Polymath Agentic Access](https://apis.io/agentic-access/polymath/polymath-agentic-access/)
+
+#### Collections (10)
+
+Postman and Open Collection request collections.
+
+- [Polymath API Service CANBus API](https://apis.io/collections/polymath/open-polymath-canbus-api/)
+- [Polymath API Service CANBus filesystem API](https://apis.io/collections/polymath/open-polymath-filesystem-api/)
+- [Polymath API Service CANBus Health Check API](https://apis.io/collections/polymath/open-polymath-health-check-api/)
+- [Polymath API Service CANBus Livekit API](https://apis.io/collections/polymath/open-polymath-livekit-api/)
+- [Polymath API Service CANBus Media API](https://apis.io/collections/polymath/open-polymath-media-api/)
+- [Polymath API Service CANBus ros API](https://apis.io/collections/polymath/open-polymath-ros-api/)
+- [Polymath API Service CANBus systemd API](https://apis.io/collections/polymath/open-polymath-systemd-api/)
+- [Polymath API Service CANBus Teleop Control API](https://apis.io/collections/polymath/open-polymath-teleop-control-api/)
+- [Polymath API Service CANBus Vehicle Autonomy API](https://apis.io/collections/polymath/open-polymath-vehicle-autonomy-api/)
+- [Polymath API Service CANBus Vehicle Operations API](https://apis.io/collections/polymath/open-polymath-vehicle-operations-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Polymath Synapse V2 Overlay](https://apis.io/overlays/polymath/polymath-synapse-v2-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Polymath Authentication](https://apis.io/security/polymath/polymath-authentication/)
+- [Polymath Domain Security](https://apis.io/security/polymath/polymath-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.polymathrobotics.com/)
+- [Documentation](https://synapse.docs.polymathrobotics.dev/docs/reference)
+- [Getting started](https://synapse.docs.polymathrobotics.dev/docs/guides/authentication)
+- [API reference](https://synapse.docs.polymathrobotics.dev/docs/reference)
+- [Blog](https://www.polymathrobotics.com/blog)
+- [Terms of service](https://www.polymathrobotics.com/legal/terms-of-service)
+- [Privacy policy](https://www.polymathrobotics.com/legal/privacy-policy)
+- [GitHub](https://github.com/polymathrobotics)
+
+## API Evangelist rating
+
+**Kin Score 37.0** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 43.8 |
+| Contract governance | 4.5 |
+| Operational transparency | 2.6 |
+| Developer ergonomics | 66.1 |
+| Access clarity | 21.1 |
+
+**Agent readiness 26.4** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 22.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/polymath/](https://apis.io/providers/polymath/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Polymath Robotics: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/polymath/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
